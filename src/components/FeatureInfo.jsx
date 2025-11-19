@@ -1,6 +1,6 @@
 import { useMediaQuery } from "react-responsive"
 
-function FeatureCard(props){
+function FeatureInfo(props){
 
     // adjusts CSS for mobile and tablet users
     const onMobile = useMediaQuery({maxWidth: 768})
@@ -31,4 +31,4 @@ function FeatureCard(props){
     )
 }
 
-export default FeatureCard
+export default FeatureInfo
