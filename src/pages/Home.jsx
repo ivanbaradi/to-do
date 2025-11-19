@@ -16,19 +16,19 @@ function Home(){
                 <div className="row">
                     <FeatureInfo 
                         subtitle='➕ Add Item'
-                        description='Add items to the list you need for shopping, errands, etc.'
+                        desc='Add items to the list you need for shopping, errands, etc.'
                     />
                     <FeatureInfo 
                         subtitle='📝 Edit Item'
-                        description='Made a mistake? Never too late to change! We got you!'
+                        desc='Made a mistake? Never too late to change! We got you!'
                     />
                     <FeatureInfo 
                         subtitle='✅ Check Item'
-                        description="Don't forget to cross the item once you have it!"
+                        desc="Don't forget to cross the item once you have it!"
                     />
                     <FeatureInfo 
                         subtitle='🗑️ Delete Item'
-                        description='Done for your item for good? Might as well just throw it away! Otherwise, just cross it.'
+                        desc='Done for your item for good? Might as well just throw it away! Otherwise, just cross it.'
                     />
                 </div>
             </div>                

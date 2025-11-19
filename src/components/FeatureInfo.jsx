@@ -26,7 +26,7 @@ function FeatureInfo(props){
     return (
         <div className="col-12 col-md-6 col-lg-3" style={card}>
             <h3 style={subtitle}>{props.subtitle}</h3>
-            <p style={desc}>{props.description}</p>
+            <p style={desc}>{props.desc}</p>
         </div>
     )
 }
