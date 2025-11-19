@@ -27,7 +27,7 @@ function Home(){
                         <FeatureInfo 
                             iconName='check_box'
                             subTitle='Check Item'
-                            desc="Don't forget to cross the item once you have it!"
+                            desc="Don't forget to check the item once you have it!"
                         />
                         <FeatureInfo 
                             iconName='delete'
