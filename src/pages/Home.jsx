@@ -20,7 +20,7 @@ function Home(){
 
     // container item description
     const desc = {
-        textAlign: !onMobile && 'left' // text aligns leftwards when on smaller devices (e.g. mobile)
+        textAlign: !onMobile && 'left' // text aligns leftwards when on larger devices (e.g. desktop, tablet)
     }
 
     return (
