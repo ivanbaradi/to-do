@@ -1,6 +1,15 @@
 body {
     background-color: cornsilk;
     text-align: center;
-    font-family: "Pacifico", cursive;
+    font-family: "Stack Sans Text", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
 }
 
