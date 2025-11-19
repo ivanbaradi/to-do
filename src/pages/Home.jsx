@@ -15,19 +15,23 @@ function Home(){
                 <div className="container">
                     <div className="row">
                         <FeatureInfo 
-                            subtitle='➕ Add Item'
+                            iconName='add_notes'
+                            subTitle='Add Item'
                             desc='Add items to the list you need for shopping, errands, etc.'
                         />
                         <FeatureInfo 
-                            subtitle='📝 Edit Item'
+                            iconName='edit'
+                            subTitle='Edit Item'
                             desc='Made a mistake? Never too late to change! We got you!'
                         />
                         <FeatureInfo 
-                            subtitle='✅ Check Item'
+                            iconName='check_box'
+                            subTitle='Check Item'
                             desc="Don't forget to cross the item once you have it!"
                         />
                         <FeatureInfo 
-                            subtitle='🗑️ Delete Item'
+                            iconName='delete'
+                            subTitle='Delete Item'
                             desc='Done for your item for good? Might as well just throw it away! Otherwise, just cross it.'
                         />
                     </div>
