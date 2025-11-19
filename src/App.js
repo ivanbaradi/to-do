@@ -10,19 +10,17 @@ import AddItem from './pages/AddItem';
 function App() {
   return (
     <div className="App">
-        <div>
-            <Router>
-                <Header />
-                <NavBar />
-                <Routes> 
-                    <Route path='/' element={<Home />}/>
-                    <Route path='/about' element={<About />}/>
-                    <Route path='/add-item' element={<AddItem />}/>
-                    <Route path='/list' element={<List />}/>
-                </Routes>
-                <Footer />
-            </Router>
-        </div>
+      <Router>
+          <Header />
+          <NavBar />
+          <Routes> 
+              <Route path='/' element={<Home />}/>
+              <Route path='/about' element={<About />}/>
+              <Route path='/add-item' element={<AddItem />}/>
+              <Route path='/list' element={<List />}/>
+          </Routes>
+          <Footer />
+      </Router>
     </div>
   );
 }
