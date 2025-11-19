@@ -43,19 +43,19 @@ function Home(){
             <div className="container">
                 <div className="row">
                     <div className="col-12 col-md-6 col-lg-3" style={onMobile ? card_mobile : (onTablet ? card_tablet : card)}>
-                        <h2 style={header}>Add Item</h2>
+                        <h2 style={header}>➕ Add Item</h2>
                         <p style={onMobile ? desc_mobile : desc}>Add items to the list you need for shopping, errands, etc.</p>
                     </div>
                     <div className="col-12 col-md-6 col-lg-3" style={onMobile ? card_mobile : (onTablet ? card_tablet : card)}>
-                        <h2 style={header}>Edit Item</h2>
+                        <h2 style={header}>📝 Edit Item</h2>
                         <p style={onMobile ? desc_mobile : desc}>Made a mistake? Never too late to change! We got you!</p>
                     </div>
                     <div className="col-12 col-md-6 col-lg-3" style={onMobile ? card_mobile : card}>
-                        <h2 style={header}>Cross Item</h2>
+                        <h2 style={header}>✅ Check Item</h2>
                         <p style={onMobile ? desc_mobile : desc}>Don't forget to cross the item once you have it!</p>
                     </div>
                     <div className="col-12 col-md-6 col-lg-3" style={onMobile ? card_mobile : card}>
-                        <h2 style={header}>Delete Item</h2>
+                        <h2 style={header}>🗑️ Delete Item</h2>
                         <p style={onMobile ? desc_mobile : desc}>Done for your item for good? Might as well just throw it away! Otherwise, just cross it.</p>
                     </div>
                 </div>
