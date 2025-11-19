@@ -8,6 +8,7 @@ function Header(){
     }
 
     const titleStyle = {
+        fontFamily: 'Pacifico, cursive',
         fontSize: 50,
         marginTop: 30
     }
