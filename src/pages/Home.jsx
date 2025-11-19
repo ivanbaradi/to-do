@@ -24,7 +24,7 @@ function Home(){
     }
 
     return (
-        <div style={{marginTop: '40px'}}>
+        <div className="content">
             <div className="container">
                 <div className="row">
                     <div className="col-12 col-md-6 col-lg-3" style={card}>
