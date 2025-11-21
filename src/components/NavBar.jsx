@@ -2,27 +2,33 @@ import { Link } from 'react-router-dom';
 
 function NavBar(){
 
-    const middle = {
-        margin: '10px 100px'
+    console.log('navbar activated')
+
+    const navHeader = {
+
     }
 
     const navItem = {
-        fontFamily: "Vend Sans, sans-serif",
-        fontWeight: 'bold',
-        padding: '5px 15px',
+        textAlign: 'left'
     }
 
     return (
-        <nav>
-            <Link to='/add-item'>
-                <button className='btn btn-dark' style={navItem}>Add Item</button>
-            </Link>
-            <Link to='/list'>
-                <button className='btn btn-dark' style={{...navItem, ...middle}}>List</button>
-            </Link>
-            <Link to='/about'>
-                <button className='btn btn-dark' style={navItem}>About</button>
-            </Link>
+        <nav className='navbar navbar-expand-md navbar-dark bg-dark'>
+            <div className='container-fluid'>
+                <Link to='/' className='navbar-brand h1 mb-0'>To Do</Link>
+                
+                <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                    <span className="navbar-toggler-icon"></span>
+                </button>
+                
+                <div className="collapse navbar-collapse" id="navbarNavDropdown">
+                    <div className="navbar-nav">
+                        <Link className="nav-link" style={navItem} to='/add-item'>Add Item</Link>
+                        <Link className="nav-link" style={navItem} to='/list'>List</Link>
+                        <Link className="nav-link" style={navItem} to='/about'>About</Link>
+                    </div>
+                </div>
+            </div>
         </nav> 
     )
 }
