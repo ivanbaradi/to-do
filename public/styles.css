@@ -5,16 +5,25 @@ body {
     font-optical-sizing: auto;
     font-weight: 300;
     font-style: normal;
+    /* display: flex;
+    flex-direction: column;
+    min-height: 100vh; */
+}
+
+main {
+    margin-top: 40px;
+    /* flex-grow: 1; */
 }
 
 footer {
-    position: fixed;
+    /* position: fixed;
     bottom: 0;
-    width: 100%;
+    width: 100%; */
 }
 
-/* main content */
-.content {
-    margin-top: 40px;
-}
 
+
+/* contents of main content */
+.sub-content {
+
+}

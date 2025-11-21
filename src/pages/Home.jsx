@@ -9,7 +9,9 @@ function Home(){
     }
 
     return (
-        <div className="content">
+        <main>
+
+            {/* Feature Section */}
             <div className="sub-content">
                 <h2 style={title}>What Can You Do Here?</h2>
                 <div className="container">
@@ -37,7 +39,7 @@ function Home(){
                     </div>
                 </div>                
             </div>
-        </div>
+        </main>
     )
 }
 

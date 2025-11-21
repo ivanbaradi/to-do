@@ -22,9 +22,9 @@ function List(){
     }
 
     return (
-        <div className="content">
+        <main>
 
-        </div>
+        </main>
     )
 }
 

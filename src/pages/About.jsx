@@ -2,10 +2,10 @@
 
 function About(){
     return (
-        <div className="content">
+        <main>
 
 
-        </div>
+        </main>
     )
 }
 
