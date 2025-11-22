@@ -1,13 +1,13 @@
 import { useMediaQuery } from "react-responsive"
 
-function FeatureInfo(props){
+function FeatureInfo({iconName, subTitle, desc}){
 
     // adjusts CSS for mobile and tablet users
     const onMobile = useMediaQuery({maxWidth: 768})
     const onTablet = useMediaQuery({maxWidth: 992})
 
     // sub-titles that discuss features
-    const subTitle = {
+    const _subTitle = {
         fontFamily: 'Knewave, system-ui',
         fontWeight: 400,
         fontStyle: 'normal'
@@ -19,7 +19,7 @@ function FeatureInfo(props){
     }
 
     // feature description
-    const desc = {
+    const _desc = {
         textAlign: !onMobile && 'left' // text aligns leftwards when on larger devices (e.g. desktop, tablet)
     }
 
@@ -31,9 +31,9 @@ function FeatureInfo(props){
 
     return (
         <div className="col-12 col-md-6 col-lg-3" style={card}>
-            <i className='material-symbols-outlined' style={icon}>{props.iconName}</i>
-            <h3 style={subTitle}>{props.subTitle}</h3>
-            <p style={desc}>{props.desc}</p>
+            <i className='material-symbols-outlined' style={icon}>{iconName}</i>
+            <h3 style={_subTitle}>{subTitle}</h3>
+            <p style={_desc}>{desc}</p>
         </div>
     )
 }
