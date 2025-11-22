@@ -21,11 +21,11 @@ function Carousel(){
             </div>    
             <div className="carousel-inner" >
                 <CarouselSlide 
-                    desc='EXPLORE AROUND DIFFERENT FEATURES'
+                    desc='EXPLORE DIFFERENT FEATURES'
                     active={true}              
                 />
                 <CarouselSlide 
-                    desc='USE IT WHENEVER YOU GO SHOPPING, DO CHORES, AND MORE'
+                    desc='USE IT WHEREVER YOU GO'
                     active={false}                       
                 />
                 <CarouselSlide 
