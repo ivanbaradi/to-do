@@ -5,24 +5,13 @@ body {
     font-optical-sizing: auto;
     font-weight: 300;
     font-style: normal;
-    /* display: flex;
-    flex-direction: column;
-    min-height: 100vh; */
 }
 
-footer {
-    /* position: fixed;
-    bottom: 0;
-    width: 100%; */
-}
-
-.sub-content {
-    margin-top: 40px;
-    /* flex-grow: 1; */
+.sub-content, .title {
+    margin-bottom: 40px;
 }
 
 .title{
-    margin-bottom: 40px;
     font-weight: 600;
     font-size: 35px;
 }

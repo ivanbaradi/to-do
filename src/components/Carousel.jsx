@@ -3,17 +3,15 @@ import CarouselSlide from "../components/CarouselSlide"
 function Carousel(){
 
     const carousel = {
-        height: 300,
+        height: '300px',
         backgroundColor: 'orangered',
         fontFamily: 'Lexend Deca, sans-serif',
-        fontOpticalSizing: 'auto',
-        fontStyle: 'normal',        
         fontWeight: 500,
         color: 'white'
     }
 
     return (
-        <div id="carousel" className="sub-content carousel slide" data-bs-ride='carousel' style={{...carousel, marginTop: '0px'}}>
+        <div id="carousel" className="sub-content carousel slide" data-bs-ride='carousel' style={carousel}>
             <div className="carousel-indicators">
                 <button type="button" data-bs-target="#carousel" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
                 <button type="button" data-bs-target="#carousel" data-bs-slide-to="1" aria-label="Slide 2"></button>

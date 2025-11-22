@@ -10,7 +10,6 @@ function FeatureInfo({iconName, subTitle, desc}){
     const _subTitle = {
         fontFamily: 'Knewave, system-ui',
         fontWeight: 400,
-        fontStyle: 'normal'
     }
 
     // aka feature item
