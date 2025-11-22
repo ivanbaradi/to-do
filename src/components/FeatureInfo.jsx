@@ -15,7 +15,7 @@ function FeatureInfo({iconName, subTitle, desc}){
 
     // aka feature item
     const card = {
-        marginBottom: (onMobile | onTablet) && '40px'
+        marginBottom: onTablet && '40px' // adds margin from the bottom for small and medium devices
     }
 
     // feature description
