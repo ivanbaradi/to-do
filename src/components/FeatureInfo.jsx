@@ -3,8 +3,8 @@ import { useMediaQuery } from "react-responsive"
 function FeatureInfo({iconName, subTitle, desc}){
 
     // adjusts CSS for mobile and tablet users
-    const onMobile = useMediaQuery({maxWidth: 768})
-    const onTablet = useMediaQuery({maxWidth: 992})
+    const onMobile = useMediaQuery({maxWidth: 767})
+    const onTablet = useMediaQuery({maxWidth: 991})
 
     // sub-titles that discuss features
     const _subTitle = {
