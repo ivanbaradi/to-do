@@ -10,20 +10,13 @@ body {
     min-height: 100vh; */
 }
 
-main {
-    margin-top: 40px;
-    /* flex-grow: 1; */
-}
-
 footer {
     /* position: fixed;
     bottom: 0;
     width: 100%; */
 }
 
-
-
-/* contents of main content */
 .sub-content {
-
+    margin-top: 40px;
+    /* flex-grow: 1; */
 }
