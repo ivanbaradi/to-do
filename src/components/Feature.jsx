@@ -25,7 +25,7 @@ function Feature({titleCSS}){
                         <FeatureInfo 
                             iconName='delete'
                             subTitle='Delete Item'
-                            desc='Done for your item for good? Might as well just throw it away! Otherwise, just cross it.'
+                            desc='Done for your item for good? Might as well just throw it away! Otherwise, just check it for now.'
                         />
                     </div>
                 </div>                
