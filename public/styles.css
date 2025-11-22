@@ -20,3 +20,9 @@ footer {
     margin-top: 40px;
     /* flex-grow: 1; */
 }
+
+.title{
+    margin-bottom: 40px;
+    font-weight: 600;
+    font-size: 35px;
+}
