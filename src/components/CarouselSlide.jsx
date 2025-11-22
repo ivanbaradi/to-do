@@ -5,10 +5,11 @@ function CarouselSlide({active, desc}){
     }
 
     const centerText = {
-        display: 'flex',
-        justifyContent: 'center', 
-        alignItems: 'center',    
+        display: 'grid',
+        placeItems: 'center',    
         height: '315px', 
+        width: '70%',
+        margin: '0 auto'
     }
 
     return (
