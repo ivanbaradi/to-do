@@ -4,7 +4,7 @@ function Carousel(){
 
     const carousel = {
         height: 300,
-        backgroundColor: 'deeppink',
+        backgroundColor: 'orangered',
         fontFamily: 'Lexend Deca, sans-serif',
         fontOpticalSizing: 'auto',
         fontStyle: 'normal',        
