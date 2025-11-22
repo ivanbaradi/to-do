@@ -1,6 +1,6 @@
 function CarouselSlide({active, desc}){
 
-    const carouselItem = {
+    const carouselSlide = {
         fontSize: '30px',
     }
 
@@ -13,7 +13,7 @@ function CarouselSlide({active, desc}){
     }
 
     return (
-        <div className={active ? "carousel-item active" : "carousel-item"} style={carouselItem} data-bs-interval='10000'>
+        <div className={active ? "carousel-item active" : "carousel-item"} style={carouselSlide} data-bs-interval='10000'>
             <div style={centerText}>
                 <p>{desc}</p>
             </div>
