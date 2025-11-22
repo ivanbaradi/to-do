@@ -1,0 +1,48 @@
+import CarouselSlide from "../components/CarouselSlide"
+
+function Carousel(){
+
+    const carousel = {
+        height: 300,
+        backgroundColor: 'lightpink',
+        fontFamily: 'Lexend Deca, sans-serif',
+        fontOpticalSizing: 'auto',
+        fontStyle: 'normal',        
+        fontWeight: 500,
+        color: 'white'
+    }
+
+        return (
+            <div id="carousel" className="sub-content carousel slide" style={{...carousel, marginTop: '0px'}}>
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                </div>    
+                <div className="carousel-inner" >
+                    <CarouselSlide 
+                        desc='EXPLORE AROUND DIFFERENT FEATURES'
+                        active={true}
+                    />
+                    <CarouselSlide 
+                        desc='USE IT WHENEVER YOU GO SHOPPING, DO CHORES, AND MORE'
+                        active={false}
+                    />
+                    <CarouselSlide 
+                        desc="DON'T FORGET TO DELETE ITEMS WHEN YOU'RE DONE!"
+                        active={false}
+                    />
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        )
+}
+
+export default Carousel
