@@ -1,6 +1,6 @@
 import { useMediaQuery } from "react-responsive"
 
-function FeatureInfo({iconName, subTitle, desc, mobileCompatible, tabletCompatible}){
+export default function FeatureInfo({iconName, subTitle, desc, mobileCompatible, tabletCompatible}){
 
     // adjusts CSS for mobile and tablet users
     const onMobile = useMediaQuery({maxWidth: 767})
@@ -45,5 +45,3 @@ function FeatureInfo({iconName, subTitle, desc, mobileCompatible, tabletCompatib
         </div>
     )
 }
-
-export default FeatureInfo

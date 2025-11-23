@@ -1,9 +1,7 @@
-function AddItem(){
+export default function AddItem(){
     return (
         <main>
 
         </main>
     )
 }
-
-export default AddItem

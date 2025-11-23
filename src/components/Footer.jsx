@@ -1,4 +1,4 @@
-function Footer(){
+export default function Footer(){
 
     const curr_year = new Date().getFullYear()
     const start_year = 2025
@@ -6,5 +6,3 @@ function Footer(){
 
     return <footer>Copyright &copy; {copyright_years} by Ivan Baradi</footer>
 }
-
-export default Footer

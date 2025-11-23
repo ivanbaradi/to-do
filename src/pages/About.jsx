@@ -1,6 +1,6 @@
 
 
-function About(){
+export default function About(){
     return (
         <main>
 
@@ -8,5 +8,3 @@ function About(){
         </main>
     )
 }
-
-export default About

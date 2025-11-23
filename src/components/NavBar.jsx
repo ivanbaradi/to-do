@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-function NavBar(){
+export default function NavBar(){
 
     // useState to change navbar active item states by name
     const [activeNavItem, setActiveNavItem] = useState(null)
@@ -38,5 +38,3 @@ function NavBar(){
         </nav> 
     )
 }
-
-export default NavBar

@@ -1,7 +1,7 @@
 import { useState } from "react"
 import Item from '../components/Item'
 
-function List(){
+export default function List(){
 
     const [list, setList] = useState([])
 
@@ -27,5 +27,3 @@ function List(){
         </main>
     )
 }
-
-export default List

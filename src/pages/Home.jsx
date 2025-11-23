@@ -1,7 +1,7 @@
 import Carousel from "../components/Carousel"
 import Feature from "../components/Feature"
 
-function Home(){
+export default function Home(){
 
     return (
         <main>
@@ -10,5 +10,3 @@ function Home(){
         </main>
     )
 }
-
-export default Home

@@ -1,4 +1,4 @@
-function CarouselSlide({active, desc}){
+export default function CarouselSlide({active, desc}){
 
     const carouselSlide = {
         fontSize: '30px',
@@ -20,5 +20,3 @@ function CarouselSlide({active, desc}){
         </div>
     )
 }
-
-export default CarouselSlide

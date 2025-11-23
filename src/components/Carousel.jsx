@@ -1,7 +1,7 @@
 import CarouselSlide from "../components/CarouselSlide"
 import carousel_slides from "../data/carousel_slides.json"
 
-function Carousel(){
+export default function Carousel(){
 
     const carousel = {
         height: '300px',
@@ -40,5 +40,3 @@ function Carousel(){
         </div>
     )
 }
-
-export default Carousel

@@ -2,7 +2,7 @@ import FeatureInfo from "../components/FeatureInfo"
 import features from "../data/features.json"
 
 
-function Feature(){
+export default function Feature(){
 
     const n = features.length // total features
 
@@ -28,5 +28,3 @@ function Feature(){
         </div>
     )
 }
-
-export default Feature

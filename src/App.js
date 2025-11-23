@@ -6,7 +6,7 @@ import NavBar from './components/NavBar';
 import Footer from './components/Footer';
 import AddItem from './pages/AddItem';
 
-function App() {
+export default function App() {
   return (
     <div className="App">
       <Router>
@@ -22,5 +22,3 @@ function App() {
     </div>
   );
 }
-
-export default App;
