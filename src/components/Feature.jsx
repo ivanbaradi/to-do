@@ -18,8 +18,8 @@ export default function Feature(){
                                 iconName={iconName} 
                                 subTitle={subTitle}
                                 desc={desc}
-                                mobileCompatible={index < n-1 && true}  // adds margin bottoms on features except ones from the last row on mobile
-                                tabletCompatible={index < n-2 && true}  // adds margin bottoms on features except ones from the last row on tablet
+                                mobileCompatible={index < n-1}  // adds gaps between features except ones from the last row on mobile
+                                tabletCompatible={index < n-2}  // same but on tablet
                             />
                         )
                     }

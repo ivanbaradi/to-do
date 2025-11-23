@@ -20,7 +20,7 @@ export default function Carousel(){
                             type="button" 
                             data-bs-target="#carousel" 
                             data-bs-slide-to={index} 
-                            className={index === 0 && 'active'} 
+                            className={index === 0 && 'active'} //first slide indicator is active by default
                             aria-current="true" 
                             aria-label={`Slide ${index+1}`} 
                         />
@@ -33,7 +33,7 @@ export default function Carousel(){
                         <CarouselSlide 
                             key={index}
                             desc={desc} 
-                            active={index === 0 && true}
+                            active={index === 0} // first slide is active by default
                         />
                     )
                 }
