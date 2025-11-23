@@ -1,6 +1,6 @@
 import { useMediaQuery } from "react-responsive"
 
-export default function FeatureInfo({iconName, subTitle, desc, mobileCompatible, tabletCompatible}){
+export default function FeatureInfo({iconName, subTitle, desc, mobileMarginAdjust, tabletMarginAdjust, laptopMarginAdjust}){
 
     // adjusts CSS for mobile and tablet users
     const onMobile = useMediaQuery({maxWidth: 767})
@@ -12,21 +12,10 @@ export default function FeatureInfo({iconName, subTitle, desc, mobileCompatible,
         fontWeight: 400,
     }
 
+    // feature including icon and description
     const feature = {
-        padding: '0 50px'
-    }
-
-    const featureMobile = {
-        marginBottom: '40px' 
-    }
-
-    const featureTablet = {
-        marginBottom: '80px'
-    }
-
-    // feature description
-    const _desc = {
-        textAlign: !onMobile && 'left' // text aligns leftwards when on larger devices (e.g. desktop, tablet)
+        padding: '0 50px',
+        marginBottom: laptopMarginAdjust && '60px'
     }
 
     // feature icon
@@ -35,13 +24,14 @@ export default function FeatureInfo({iconName, subTitle, desc, mobileCompatible,
         marginBottom: '20px'
     }
 
-    const featureQuery = onMobile ? (mobileCompatible && featureMobile) : onTablet && (tabletCompatible && featureTablet) // media responsiveness for dynamic CSS changing on features
+    // media responsiveness for dynamic CSS changing on features (mobiles and tablets)
+    const featureQuery = onMobile ? mobileMarginAdjust && {marginBottom: '40px'} : onTablet && tabletMarginAdjust && {marginBottom: '80px'}
 
     return (
         <div className="col-12 col-md-6 col-lg-3" style={{...feature, ...featureQuery}}>
             <i className='material-symbols-outlined' style={icon}>{iconName}</i>
             <h3 style={_subTitle}>{subTitle}</h3>
-            <p style={_desc}>{desc}</p>
+            <p style={{textAlign: !onMobile && 'left'}}>{desc}</p> {/* text aligns leftwards when on tablets and laptops */}
         </div>
     )
 }

@@ -1,7 +1,6 @@
 import FeatureInfo from "../components/FeatureInfo"
 import features from "../data/features.json"
 
-
 export default function Feature(){
 
     const n = features.length // total features
@@ -18,8 +17,9 @@ export default function Feature(){
                                 iconName={iconName} 
                                 subTitle={subTitle}
                                 desc={desc}
-                                mobileCompatible={index < n-1}  // adds gaps between features except ones from the last row on mobile
-                                tabletCompatible={index < n-2}  // same but on tablet
+                                mobileMarginAdjust={index < n-1}  // adds margins between features from on mobile
+                                tabletMarginAdjust={index < n-2}  // same but on tablet
+                                laptopMarginAdjust={index < n-4}  // same but on laptop
                             />
                         )
                     }
