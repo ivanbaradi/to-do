@@ -1,6 +1,6 @@
 import { useMediaQuery } from "react-responsive"
 
-function FeatureInfo({iconName, subTitle, desc}){
+function FeatureInfo({iconName, subTitle, desc, mobileCompatible, tabletCompatible}){
 
     // adjusts CSS for mobile and tablet users
     const onMobile = useMediaQuery({maxWidth: 767})
@@ -12,10 +12,16 @@ function FeatureInfo({iconName, subTitle, desc}){
         fontWeight: 400,
     }
 
-    // aka feature item
-    const card = {
-        marginBottom: onTablet && '40px', // adds margin from the bottom for small and medium devices
+    const feature = {
         padding: '0 50px'
+    }
+
+    const featureMobile = {
+        marginBottom: '40px' 
+    }
+
+    const featureTablet = {
+        marginBottom: '80px'
     }
 
     // feature description
@@ -29,8 +35,10 @@ function FeatureInfo({iconName, subTitle, desc}){
         marginBottom: '20px'
     }
 
+    const featureQuery = onMobile ? (mobileCompatible && featureMobile) : onTablet && (tabletCompatible && featureTablet) // media responsiveness for dynamic CSS changing on features
+
     return (
-        <div className="col-12 col-md-6 col-lg-3" style={card}>
+        <div className="col-12 col-md-6 col-lg-3" style={{...feature, ...featureQuery}}>
             <i className='material-symbols-outlined' style={icon}>{iconName}</i>
             <h3 style={_subTitle}>{subTitle}</h3>
             <p style={_desc}>{desc}</p>

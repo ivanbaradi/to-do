@@ -1,4 +1,5 @@
 import CarouselSlide from "../components/CarouselSlide"
+import carousel_slides from "../data/carousel_slides.json"
 
 function Carousel(){
 
@@ -18,18 +19,12 @@ function Carousel(){
                 <button type="button" data-bs-target="#carousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
             </div>    
             <div className="carousel-inner" >
-                <CarouselSlide 
-                    desc='EXPLORE DIFFERENT FEATURES'
-                    active={true}              
-                />
-                <CarouselSlide 
-                    desc='USE IT WHEREVER YOU GO'
-                    active={false}                       
-                />
-                <CarouselSlide 
-                    desc="DON'T FORGET TO DELETE ITEMS WHEN YOU'RE DONE!"
-                    active={false}                       
-                />
+                {carousel_slides.map((slide, index) => <
+                    CarouselSlide 
+                        key={index}
+                        desc={slide.desc} 
+                        active={index === 0 ? true : false} 
+                />)}
             </div>
             <button className="carousel-control-prev" type="button" data-bs-target="#carousel" data-bs-slide="prev">
                 <span className="carousel-control-prev-icon" aria-hidden="true"></span>
