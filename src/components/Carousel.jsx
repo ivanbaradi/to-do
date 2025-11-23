@@ -19,12 +19,15 @@ function Carousel(){
                 <button type="button" data-bs-target="#carousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
             </div>    
             <div className="carousel-inner" >
-                {carousel_slides.map((slide, index) => <
-                    CarouselSlide 
-                        key={index}
-                        desc={slide.desc} 
-                        active={index === 0 ? true : false} 
-                />)}
+                {
+                    carousel_slides.map((slide, index) =>  
+                        <CarouselSlide 
+                            key={index}
+                            desc={slide.desc} 
+                            active={index === 0 ? true : false} 
+                        />
+                    )
+                }
             </div>
             <button className="carousel-control-prev" type="button" data-bs-target="#carousel" data-bs-slide="prev">
                 <span className="carousel-control-prev-icon" aria-hidden="true"></span>
