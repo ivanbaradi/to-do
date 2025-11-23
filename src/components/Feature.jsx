@@ -12,12 +12,12 @@ export default function Feature(){
             <div className="container">
                 <div className="row">
                     {
-                        features.map((info, index) => 
+                        features.map(({iconName, subTitle, desc}, index) => 
                             <FeatureInfo 
                                 key={index}
-                                iconName={info.iconName} 
-                                subTitle={info.subTitle}
-                                desc={info.desc}
+                                iconName={iconName} 
+                                subTitle={subTitle}
+                                desc={desc}
                                 mobileCompatible={index < n-1 && true}  // adds margin bottoms on features except ones from the last row on mobile
                                 tabletCompatible={index < n-2 && true}  // adds margin bottoms on features except ones from the last row on tablet
                             />

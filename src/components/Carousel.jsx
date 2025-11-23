@@ -18,10 +18,10 @@ export default function Carousel(){
             </div>    
             <div className="carousel-inner" >
                 {
-                    carousel_slides.map((slide, index) =>  
+                    carousel_slides.map(({desc}, index) =>  
                         <CarouselSlide 
                             key={index}
-                            desc={slide.desc} 
+                            desc={desc} 
                             active={index === 0 && true}
                         />
                     )
