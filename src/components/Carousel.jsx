@@ -14,9 +14,7 @@ export default function Carousel(){
     return (
         <div id="carousel" className="sub-content carousel slide" data-bs-ride='carousel' style={carousel}>
             <div className="carousel-indicators">
-                <button type="button" data-bs-target="#carousel" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#carousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                <button type="button" data-bs-target="#carousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                {carousel_slides.map((_, index) => <button type="button" data-bs-target="#carousel" data-bs-slide-to={index} className={index === 0 && 'active'} aria-current="true" aria-label={`Slide ${index+1}`}></button>)}
             </div>    
             <div className="carousel-inner" >
                 {
