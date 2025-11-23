@@ -24,7 +24,7 @@ function Carousel(){
                         <CarouselSlide 
                             key={index}
                             desc={slide.desc} 
-                            active={index === 0 ? true : false} 
+                            active={index === 0 && true}
                         />
                     )
                 }
