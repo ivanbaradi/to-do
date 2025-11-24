@@ -1,5 +1,5 @@
 import CarouselSlide from "../components/CarouselSlide"
-import carousel_slides from "../data/carousel_slides.json"
+import carouselSlides from "../data/carouselSlides.json"
 
 export default function Carousel(){
 
@@ -15,7 +15,7 @@ export default function Carousel(){
         <div id="carousel" className="sub-content carousel slide" data-bs-ride='carousel' style={carousel}>
             <div className="carousel-indicators">
                 {
-                    carousel_slides.map((_, index) => 
+                    carouselSlides.map((_, index) => 
                         <button 
                             key={index}
                             type="button" 
@@ -30,7 +30,7 @@ export default function Carousel(){
             </div>    
             <div className="carousel-inner" >
                 {
-                    carousel_slides.map(({desc}, index) =>  
+                    carouselSlides.map(({desc}, index) =>  
                         <CarouselSlide 
                             key={index}
                             desc={desc} 
