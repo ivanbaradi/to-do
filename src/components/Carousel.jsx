@@ -17,10 +17,11 @@ export default function Carousel(){
                 {
                     carousel_slides.map((_, index) => 
                         <button 
+                            key={index}
                             type="button" 
                             data-bs-target="#carousel" 
                             data-bs-slide-to={index} 
-                            className={index === 0 && 'active'} //first slide indicator is active by default
+                            className={index === 0 ? 'active' : undefined} //first slide indicator is active by default
                             aria-current="true" 
                             aria-label={`Slide ${index+1}`} 
                         />
