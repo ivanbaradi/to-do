@@ -28,7 +28,7 @@ export default function FeatureInfo({iconName, subTitle, desc, mobileMarginAdjus
     const featureMarginQuery = onMobile ? mobileMarginAdjust && {marginBottom: '40px'} : onTablet && tabletMarginAdjust && {marginBottom: '80px'}
 
     return (
-        <div className="col-12 col-md-6 col-lg-3" style={{...feature, ...featureMarginQuery}}>
+        <div className="col-md-6 col-lg-3" style={{...feature, ...featureMarginQuery}}>
             <i className='material-symbols-outlined' style={icon}>{iconName}</i>
             <h3 style={_subTitle}>{subTitle}</h3>
             <p style={{textAlign: !onMobile && 'left'}}>{desc}</p> {/* text aligns leftwards when on tablets and laptops */}
