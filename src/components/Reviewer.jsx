@@ -41,7 +41,7 @@ export default function Reviewer({name, caption, text, tabletMarginAdjust, lapto
     }
 
     // media responsiveness to dynamically change margin bottoms between reviewers
-    const reviewMarginQuery =  {marginBottom: (onTablet && tabletMarginAdjust || laptopMarginAdjust) && '50px'}
+    const reviewMarginQuery =  {marginBottom: ((onTablet && tabletMarginAdjust) || laptopMarginAdjust) && '50px'}
 
     return (
         <div className="col-lg-6" style={reviewMarginQuery}>
