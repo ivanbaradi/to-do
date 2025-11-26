@@ -11,7 +11,7 @@ export default function Reviewer({name, caption, text, tabletMarginAdjust, lapto
 
     const reviewer = {
         border: customBorder,
-        borderRadius: '10px',
+        borderRadius: '30px',
         backgroundColor: 'white',
         maxWidth: onMobile ? '60%' : '95%',
         margin: '0 auto',
@@ -31,7 +31,7 @@ export default function Reviewer({name, caption, text, tabletMarginAdjust, lapto
     // reviewer caption and text
     const section2 = {
         textAlign: !onMobile && 'left',
-        marginTop: !onMobile && '18px'
+        paddingTop: !onMobile && '18px',
     }
 
     const _caption = {
