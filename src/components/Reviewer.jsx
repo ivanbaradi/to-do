@@ -1,4 +1,3 @@
-import { tab } from "@testing-library/user-event/dist/tab"
 import { useMediaQuery } from "react-responsive"
 
 export default function Reviewer({name, caption, text, tabletMarginAdjust, laptopMarginAdjust}){
