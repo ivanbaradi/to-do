@@ -1,5 +1,5 @@
-import FeatureInfo from "../components/FeatureInfo"
-import features from "../data/features.json"
+import FeatureInfo from "./FeatureInfo"
+import features from "../../data/features.json"
 
 export default function Feature(){
 

@@ -1,4 +1,4 @@
-import reviewers from '../data/reviewers.json'
+import reviewers from '../../data/reviewers.json'
 import Reviewer from './Reviewer'
 
 export default function Review(){

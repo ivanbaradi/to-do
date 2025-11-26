@@ -1,5 +1,5 @@
-import CarouselSlide from "../components/CarouselSlide"
-import carouselSlides from "../data/carouselSlides.json"
+import CarouselSlide from "./CarouselSlide"
+import carouselSlides from "../../data/carouselSlides.json"
 
 export default function Carousel(){
 

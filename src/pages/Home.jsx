@@ -1,6 +1,6 @@
-import Carousel from "../components/Carousel"
-import Feature from "../components/Feature"
-import Review from "../components/Review"
+import Carousel from "../components/carousel/Carousel"
+import Feature from "../components/feature/Feature"
+import Review from "../components/review/Review"
 
 export default function Home(){
 
