@@ -7,11 +7,18 @@ body {
     font-style: normal;
 }
 
-.sub-content, .title {
-    margin-bottom: 40px;
+footer {
+    padding-bottom: 20px;
 }
 
 .title{
     font-weight: 600;
-    font-size: 35px;
+    font-size: 32px;
+    width: 80%;
+    margin: 0 auto;
 }
+
+.sub-content, .title {
+    margin-bottom: 40px;
+}
+
