@@ -1,9 +1,7 @@
-import { useState } from "react"
 import Item from '../components/Item'
 
 export default function List(){
 
-    const [list, setList] = useState([])
 
     function AddItem(item){
 
