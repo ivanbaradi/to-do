@@ -24,7 +24,7 @@ export default function FeatureInfo({iconName, subTitle, desc, mobileMarginAdjus
         marginBottom: '20px'
     }
 
-    // media responsiveness to dynamically change margins for mobiles and tablets
+    // media responsiveness to dynamically change margin bottoms between features
     const featureMarginQuery = onMobile ? mobileMarginAdjust && {marginBottom: '40px'} : onTablet && tabletMarginAdjust && {marginBottom: '80px'}
 
     return (
