@@ -7,8 +7,11 @@ export default function Reviewer({name, caption, text, tabletMarginAdjust, lapto
     const onMobile = useMediaQuery({maxWidth: 767})
     const onTablet = useMediaQuery({maxWidth: 991})
 
+    // reviewer borders
+    const customBorder = '3px ridge black'
+
     const reviewer = {
-        border: '2px solid black',
+        border: customBorder,
         borderRadius: '10px',
         backgroundColor: 'white',
         maxWidth: onMobile ? '60%' : '95%',
@@ -18,7 +21,7 @@ export default function Reviewer({name, caption, text, tabletMarginAdjust, lapto
     // reviewer icon, name, and rating
     const section1 = {
         paddingBottom: '10px',
-        borderRight: !onMobile && '2px solid black'
+        borderRight: !onMobile && customBorder
     }
 
     const icon = {
@@ -38,6 +41,7 @@ export default function Reviewer({name, caption, text, tabletMarginAdjust, lapto
         marginBottom: 0
     }
 
+    // media responsiveness to dynamically change margin bottoms between reviewers
     const reviewMarginQuery =  {marginBottom: (onTablet && tabletMarginAdjust || laptopMarginAdjust) && '50px'}
 
     return (
