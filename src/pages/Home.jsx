@@ -1,5 +1,6 @@
 import Carousel from "../components/Carousel"
 import Feature from "../components/Feature"
+import Review from "../components/Review"
 
 export default function Home(){
 
@@ -7,6 +8,7 @@ export default function Home(){
         <main>
             <Carousel />
             <Feature />            
+            <Review />
         </main>
     )
 }
