@@ -14,7 +14,6 @@ export default function Review(){
                         reviewers.map(({name, caption, text}, index) => 
                             <Reviewer 
                                 key={index}
-                                index={index}
                                 name={name}
                                 caption={caption}
                                 text={text}
