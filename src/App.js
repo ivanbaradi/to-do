@@ -11,7 +11,7 @@ import AddItem from './pages/AddItem';
 export default function App() {
 
   const [toDoList, setToDoList] = useState([])
-  const {pathname} = useLocation() // will need to fetch current URL whenever web page gets reloaded
+  const {pathname} = useLocation() // will need to fetch current pathname whenever web page gets reloaded
 
   return (
     <div className="App">
