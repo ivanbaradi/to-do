@@ -97,7 +97,6 @@ export default function AddItem({setToDoList}){
                     onChange={event => handleChange(event.target.value, setTitle)} 
                     onKeyDown={keyPressed}
                     placeholder="Enter title"
-                    required={true}
                 />}
             />
             <TextField 
