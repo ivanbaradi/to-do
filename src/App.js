@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import About from "./pages/About";
 import List from './pages/List'
 import Home from './pages/Home';
@@ -10,19 +11,18 @@ import AddItem from './pages/AddItem';
 export default function App() {
 
   const [toDoList, setToDoList] = useState([])
+  const {pathname} = useLocation() // will need to fetch current URL whenever web page gets reloaded
 
   return (
     <div className="App">
-      <Router>
-          <NavBar />
-          <Routes> 
-              <Route path='/' element={<Home />}/>
-              <Route path='/about' element={<About />}/>
-              <Route path='/add-item' element={<AddItem />}/>
-              <Route path='/list' element={<List />}/>
-          </Routes>
-          <Footer />
-      </Router>
+      <NavBar pathname={pathname}/>
+      <Routes> 
+          <Route path='/' element={<Home />}/>
+          <Route path='/about' element={<About />}/>
+          <Route path='/add-item' element={<AddItem setToDoList={setToDoList} />}/>
+          <Route path='/list' element={<List toDoList={toDoList} />}/>
+      </Routes>
+      <Footer />
     </div>
   );
 }
