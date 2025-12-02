@@ -10,7 +10,7 @@ import AddItem from './pages/AddItem';
 
 export default function App() {
 
-  const [toDoList, setToDoList] = useState([])
+  const [list, setList] = useState([]) // list of items
   const {pathname} = useLocation() // will need to fetch current pathname whenever web page gets reloaded
 
   return (
@@ -19,8 +19,8 @@ export default function App() {
       <Routes> 
           <Route path='/' element={<Home />}/>
           <Route path='/about' element={<About />}/>
-          <Route path='/add-item' element={<AddItem setToDoList={setToDoList} />}/>
-          <Route path='/list' element={<List toDoList={toDoList} />}/>
+          <Route path='/add-item' element={<AddItem setList={setList} />}/>
+          <Route path='/list' element={<List list={list} />}/>
       </Routes>
       <Footer />
     </div>
