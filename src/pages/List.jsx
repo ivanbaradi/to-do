@@ -2,12 +2,7 @@ import Item from '../components/Item'
 
 export default function List(){
 
-
-    function AddItem(item){
-
-    }
-
-    function EditItem(item){
+    function editItem(item){
 
     }
 
@@ -15,7 +10,7 @@ export default function List(){
 
     }
 
-    function crossItem(item){
+    function checkItem(item){
 
     }
 
