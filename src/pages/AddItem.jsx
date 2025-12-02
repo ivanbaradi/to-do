@@ -2,10 +2,14 @@ import TextField from '../components/form/TextField'
 import FormButton from '../components/form/FormButton'
 import { useState } from "react"
 
-export default function AddItem({setToDoList}){
+export default function AddItem({setList}){
 
+    // title and description for new item
     const [title, setTitle] = useState('')
     const [desc, setDesc] = useState('')
+
+    // flag for item's empty title
+    const [emptyTitle, setEmptyTitle] = useState(null)
 
     // max input character limits
     const titleCharLimit = 20
@@ -17,20 +21,20 @@ export default function AddItem({setToDoList}){
     function addItem(){
 
         if(title.length === 0){
-            alert('Enter title')
+            setEmptyTitle(true)
             return
         }
 
         const date = new Date()
         const locale = 'en-US'
 
-        setToDoList(prevItems => [
+        setList(prevItems => [
             ...prevItems, 
             {
                 title, 
                 desc, 
-                dateAdded: date.toLocaleDateString(locale, {year: 'numeric', month: 'long', day: 'numeric'}),
-                timeAdded: date.toLocaleTimeString(locale, {hour: '2-digit', minute: '2-digit'}),
+                dateModified: date.toLocaleDateString(locale, {year: 'numeric', month: 'long', day: 'numeric'}),
+                timeModified: date.toLocaleTimeString(locale, {hour: '2-digit', minute: '2-digit'}),
                 checked: false
             }
         ])
@@ -42,22 +46,14 @@ export default function AddItem({setToDoList}){
      * Clears inputs
      */
     function clearInputs(){
+        setEmptyTitle(null)
         setTitle('')
         setDesc('')
     }
 
     /**
-     * Handles input change
-     * @param {string} value input value
-     * @param {} setValue setState of the input value
-     */
-    function handleChange(value, setValue){
-        setValue(value)
-    }
-
-    /**
      * Handles key presses
-     * @param {event} event 
+     * @param {React.KeyboardEvent<HTMLInputElement>} event 
      */
     function keyPressed(event){
         
@@ -75,11 +71,6 @@ export default function AddItem({setToDoList}){
         fontWeight: 300
     }
 
-    const buttonList = {
-        // width: '50%', 
-        // margin: '0 auto'
-    }
-
     return (
         <form>
             <TextField 
@@ -94,10 +85,11 @@ export default function AddItem({setToDoList}){
                     className="form-control" 
                     id='title' 
                     value={title} 
-                    onChange={event => handleChange(event.target.value, setTitle)} 
+                    onChange={event => setTitle(event.target.value)}
                     onKeyDown={keyPressed}
-                    placeholder="Enter title"
+                    placeholder='Enter title'
                 />}
+                emptyInput={emptyTitle} // indicates required field 
             />
             <TextField 
                 name='desc'
@@ -111,20 +103,22 @@ export default function AddItem({setToDoList}){
                     id="desc" 
                     value={desc} 
                     rows="5" 
-                    onChange={event => handleChange(event.target.value, setDesc)}
+                    onChange={event => setDesc(event.target.value)}
                     onKeyDown={keyPressed} 
                     placeholder="Enter description (optional)" 
                 />}
             />
             <div className="container">
-                <div className="row" style={buttonList}>
+                <div className="row">
                     <FormButton 
                         text='Clear'
                         onClickEvent={clearInputs}
+                        mobileMarginAdjust={true}
                     />
                     <FormButton 
-                        text='Submit'
+                        text='Add'
                         onClickEvent={addItem}
+                        mobileMarginAdjust={false}
                     />
                 </div>
             </div>
