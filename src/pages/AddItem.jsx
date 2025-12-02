@@ -53,7 +53,7 @@ export default function AddItem({setList}){
 
     /**
      * Handles key presses
-     * @param {React.KeyboardEvent<HTMLInputElement>} event 
+     * @param {React.KeyboardEvent<HTMLInputElement>} event key button associated with the event
      */
     function keyPressed(event){
         
