@@ -20,16 +20,22 @@ export default function AddItem({setList}){
      */
     function addItem(){
 
+        // Raises error message
         if(title.length === 0){
             setEmptyTitle(true)
             return
         }
 
-        const date = new Date()
-        const locale = 'en-US'
-        const dateModified = date.toLocaleDateString(locale, {year: 'numeric', month: 'long', day: 'numeric'})
-        const timeModified = date.toLocaleTimeString(locale, {hour: '2-digit', minute: '2-digit'})
-        const timestamp = dateModified + ' ' + timeModified
+        // Timestamp of the new item
+        const timestamp = new Date()
+        .toLocaleString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+            hour: 'numeric',
+            minute: 'numeric',
+        })
+        .replace('at', '')
 
         setList(prevItems => [
             ...prevItems, 
