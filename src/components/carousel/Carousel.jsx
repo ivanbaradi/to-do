@@ -1,4 +1,5 @@
 import CarouselSlide from "./CarouselSlide"
+import CarouselButton from "./CarouselButton"
 import carouselSlides from "../../data/carouselSlides.json"
 
 export default function Carousel(){
@@ -39,14 +40,20 @@ export default function Carousel(){
                     )
                 }
             </div>
-            <button className="carousel-control-prev" type="button" data-bs-target="#carousel" data-bs-slide="prev">
-                <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span className="visually-hidden">Previous</span>
-            </button>
-            <button className="carousel-control-next" type="button" data-bs-target="#carousel" data-bs-slide="next">
-                <span className="carousel-control-next-icon" aria-hidden="true"></span>
-                <span className="visually-hidden">Next</span>
-            </button>
+            <CarouselButton 
+                buttonType='carousel-control-prev'
+                buttonIcon='carousel-control-prev-icon'
+                dataBsSlide='prev'
+                dataBsTarget='#carousel'
+                text='Previous'
+            />
+            <CarouselButton 
+                buttonType='carousel-control-next'
+                buttonIcon='carousel-control-next-icon'
+                dataBsSlide='next'
+                dataBsTarget='#carousel'
+                text='Next'
+            />
         </div>
     )
 }
