@@ -12,7 +12,7 @@ export default function AddItem({setList}){
     const [emptyTitle, setEmptyTitle] = useState(null)
 
     // max input character limits
-    const titleCharLimit = 20
+    const titleCharLimit = 50
     const descCharLimit = 150
 
     /**
@@ -27,14 +27,16 @@ export default function AddItem({setList}){
 
         const date = new Date()
         const locale = 'en-US'
+        const dateModified = date.toLocaleDateString(locale, {year: 'numeric', month: 'long', day: 'numeric'})
+        const timeModified = date.toLocaleTimeString(locale, {hour: '2-digit', minute: '2-digit'})
+        const timestamp = dateModified + ' ' + timeModified
 
         setList(prevItems => [
             ...prevItems, 
             {
                 title, 
                 desc, 
-                dateModified: date.toLocaleDateString(locale, {year: 'numeric', month: 'long', day: 'numeric'}),
-                timeModified: date.toLocaleTimeString(locale, {hour: '2-digit', minute: '2-digit'}),
+                timestamp,
                 checked: false
             }
         ])
