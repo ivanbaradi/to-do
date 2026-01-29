@@ -1,6 +1,6 @@
 import ItemButton from "./ItemButton"
 
-export default function Item({title, desc, timestamp, checked}){
+export default function Item({id, title, desc, timestamp, checked, deleteItem, crossItem}){
 
     const cardBody = {
         textAlign: 'left'
@@ -27,14 +27,18 @@ export default function Item({title, desc, timestamp, checked}){
                                 text='Edit'
                             />
                             <ItemButton 
+                                id={id}
                                 buttonVariant='btn-danger'
                                 iconName='delete'
                                 text='Delete'
+                                func={deleteItem}
                             />
                             <ItemButton 
+                                id={id}
                                 buttonVariant={checked ? 'btn-secondary' : 'btn-success'}
                                 iconName='check_box'
                                 text='Check'
+                                func={crossItem}
                             />   
                         </div>
                     </div>

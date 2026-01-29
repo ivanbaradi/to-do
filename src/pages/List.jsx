@@ -1,17 +1,13 @@
 import Item from '../components/item/Item'
 
-export default function List({list}){
-
-    function editItem(item){
-
-    }
+export default function List({list, setList}){
 
     function deleteItem(id){
-
+        setList(() => {return list.filter((_, index) => index !== id)})
     }
 
-    function crossItem(item){
-
+    function crossItem(id){
+        
     }
 
     // Displays error message due to zero items in the list
@@ -24,10 +20,13 @@ export default function List({list}){
                 <div className='row'>
                     {list.map(({title, desc, timestamp, checked}, index) => <Item 
                         key={index}
+                        id={index}
                         title={title}
                         desc={desc}
                         timestamp={timestamp}
                         checked={checked}
+                        deleteItem={deleteItem}
+                        crossItem={crossItem}
                     />)}
                 </div>
             </div>

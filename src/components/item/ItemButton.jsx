@@ -1,6 +1,6 @@
 import { useMediaQuery } from "react-responsive"
 
-export default function ItemButton({buttonVariant, iconName, text}){
+export default function ItemButton({buttonVariant, iconName, text, func, id}){
 
     const onMobile = useMediaQuery({maxWidth: 767})
     const onTablet = useMediaQuery({maxWidth: 991})
@@ -21,7 +21,7 @@ export default function ItemButton({buttonVariant, iconName, text}){
 
     return (
         <div className="col-4 col-md-12">
-            <button className={`btn ${buttonVariant}`} style={button}>
+            <button className={`btn ${buttonVariant}`} style={button} onClick={() => {if(func !== undefined){func(id)}}}>
                 <i className="material-symbols-outlined">{iconName}</i>
                 <span style={textCSS}>{text}</span>
             </button>

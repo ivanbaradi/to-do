@@ -20,7 +20,7 @@ export default function App() {
           <Route path='/' element={<Home />}/>
           <Route path='/about' element={<About />}/>
           <Route path='/add-item' element={<AddItem setList={setList} />}/>
-          <Route path='/list' element={<List list={list} />}/>
+          <Route path='/list' element={<List list={list} setList={setList}/>}/>
       </Routes>
       <Footer />
     </div>
