@@ -3,7 +3,6 @@ import { useMediaQuery } from "react-responsive"
 export default function ItemButton({buttonVariant, iconName, text, func, id}){
 
     const onMobile = useMediaQuery({maxWidth: 767})
-    const onTablet = useMediaQuery({maxWidth: 991})
 
     const button = {
         display: 'inline-flex',
