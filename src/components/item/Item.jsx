@@ -2,36 +2,23 @@ import ItemButton from "./ItemButton"
 
 export default function Item({id, title, desc, timestamp, checked, deleteItem, crossItem}){
 
-    let crossItemCSS = checked ? 'line-through' : 'none' // crosses item if checked
-
-    const cardBody = {
-        textAlign: 'left'
-    }
-
-    const cardTitle = {
-        textDecoration: crossItemCSS
-    }
-
-    const cardText = {
-        fontSize: '14px',
-        textDecoration: crossItemCSS
-    }
-
-    const _timestamp = {
+    const timeStamp = {
         fontSize: '12px', 
         fontWeight: '300',
-        textDecoration: crossItemCSS
     }
 
+    const crossItemCSS = {
+        textDecoration: checked ? 'line-through' : 'none'
+    }
 
     return (
         
         <div className="col-xl-3 col-lg-4 col-md-6">
             <div className="card">
-                <div className="card-body" style={cardBody}>
-                    <h5 className="card-title" style={cardTitle}>{title}</h5>
-                    <h6 className="card-subtitle mb-2 text-body-secondary" style={_timestamp}>{timestamp}</h6>
-                    <p className="card-text" style={cardText}>{desc}</p>
+                <div className="card-body" style={{textAlign: 'left'}}>
+                    <h5 className="card-title" style={crossItemCSS}>{title}</h5>
+                    <h6 className="card-subtitle mb-2 text-body-secondary" style={{...timeStamp, ...crossItemCSS}}>{timestamp}</h6>
+                    <p className="card-text" style={{...{fontSize: '14px'}, ...crossItemCSS}}>{desc}</p>
                     <div className="container" style={{padding: 0}}>
                         <div className="row">
                             <ItemButton 
