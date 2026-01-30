@@ -50,7 +50,7 @@ export default function Item({id, title, desc, timestamp, checked, deleteItem, c
                                 id={id}
                                 buttonVariant={checked ? 'btn-secondary' : 'btn-success'}
                                 iconName='check_box'
-                                text={!checked ? 'Check' : 'Uncheck'}
+                                text={checked ? 'Uncheck' : 'Check'}
                                 func={crossItem}
                             />   
                         </div>
