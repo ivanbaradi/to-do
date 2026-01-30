@@ -15,15 +15,7 @@ export default function List({list, setList}){
      * @param {number} id target index of the item to cross or uncross
      */
     function crossItem(id){
-        setList(prev => {
-            return prev.map((item, index) => {
-                if(index === id){
-                    return {...item, checked: item.checked ? false : true}
-                }
-
-                return item
-            })
-        })
+        setList(prev => {return prev.map((item, index) => {return (index === id) ? {...item, checked: item.checked ? false : true} : item})})
     }
 
     // Displays error message due to zero items in the list
