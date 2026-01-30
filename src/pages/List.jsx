@@ -2,12 +2,28 @@ import Item from '../components/item/Item'
 
 export default function List({list, setList}){
 
+    /**
+     * Deletes item from the ToDo list
+     * @param {number} id target index of the item to delete
+     */
     function deleteItem(id){
         setList(() => {return list.filter((_, index) => index !== id)})
     }
 
+    /**
+     * Crosses or uncrosses item from the ToDo list
+     * @param {number} id target index of the item to cross or uncross
+     */
     function crossItem(id){
-        
+        setList(prev => {
+            return prev.map((item, index) => {
+                if(index === id){
+                    return {...item, checked: item.checked ? false : true}
+                }
+
+                return item
+            })
+        })
     }
 
     // Displays error message due to zero items in the list

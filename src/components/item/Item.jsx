@@ -2,23 +2,36 @@ import ItemButton from "./ItemButton"
 
 export default function Item({id, title, desc, timestamp, checked, deleteItem, crossItem}){
 
+    let crossItemCSS = checked ? 'line-through' : 'none' // crosses item if checked
+
     const cardBody = {
         textAlign: 'left'
     }
 
+    const cardTitle = {
+        textDecoration: crossItemCSS
+    }
+
+    const cardText = {
+        fontSize: '14px',
+        textDecoration: crossItemCSS
+    }
+
     const _timestamp = {
         fontSize: '12px', 
-        fontWeight: '300'
+        fontWeight: '300',
+        textDecoration: crossItemCSS
     }
+
 
     return (
         
         <div className="col-xl-3 col-lg-4 col-md-6">
             <div className="card">
-                <div className="card-body" style={{...cardBody, ...checked && {textDecoration: 'line-through'}}}>
-                    <h5 className="card-title">{title}</h5>
+                <div className="card-body" style={cardBody}>
+                    <h5 className="card-title" style={cardTitle}>{title}</h5>
                     <h6 className="card-subtitle mb-2 text-body-secondary" style={_timestamp}>{timestamp}</h6>
-                    <p className="card-text" style={{fontSize: '14px'}}>{desc}</p>
+                    <p className="card-text" style={cardText}>{desc}</p>
                     <div className="container" style={{padding: 0}}>
                         <div className="row">
                             <ItemButton 
@@ -37,7 +50,7 @@ export default function Item({id, title, desc, timestamp, checked, deleteItem, c
                                 id={id}
                                 buttonVariant={checked ? 'btn-secondary' : 'btn-success'}
                                 iconName='check_box'
-                                text='Check'
+                                text={!checked ? 'Check' : 'Uncheck'}
                                 func={crossItem}
                             />   
                         </div>
