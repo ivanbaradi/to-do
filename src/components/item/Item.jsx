@@ -28,18 +28,18 @@ export default function Item({id, title, desc, timestamp, checked, deleteItem, c
                             />
                             <ItemButton 
                                 id={id}
-                                buttonVariant='btn-danger'
-                                iconName='delete'
-                                text='Delete'
-                                func={deleteItem}
-                            />
-                            <ItemButton 
-                                id={id}
                                 buttonVariant={checked ? 'btn-secondary' : 'btn-success'}
                                 iconName='check_box'
                                 text={checked ? 'Uncheck' : 'Check'}
                                 func={crossItem}
                             />   
+                            <ItemButton 
+                                id={id}
+                                buttonVariant='btn-danger'
+                                iconName='delete'
+                                text='Delete'
+                                func={deleteItem}
+                            />
                         </div>
                     </div>
                 </div>

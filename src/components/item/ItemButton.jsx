@@ -9,7 +9,7 @@ export default function ItemButton({buttonVariant, iconName, text, func, id}){
         justifyContent: 'center',
         gap: '10px',
         width: '100%',
-        margin: !onMobile && iconName === 'delete' && '2px 0', // middle button only
+        margin: !onMobile && iconName === 'check_box' && '2px 0', // middle button only
         borderRadius: 0
     }
 
