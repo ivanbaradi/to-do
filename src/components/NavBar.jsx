@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 export default function NavBar({pathname}){
-
+ 
     // useState to change navbar active item states by name
     const [activeNavPath, setActiveNavPath] = useState(pathname)
 
