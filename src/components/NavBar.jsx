@@ -29,9 +29,9 @@ export default function NavBar({pathname}){
                 
                 <div className="collapse navbar-collapse" id="navbarNavDropdown">
                     <div className="navbar-nav">
-                        <Link className={activeNavPath === '/add-item' ? 'nav-link active' : 'nav-link'} style={navPath} onClick={() => changeActiveNavPath('/add-item')} to='/add-item'>Add Item</Link>
-                        <Link className={activeNavPath === '/list' ? 'nav-link active' : 'nav-link'} style={navPath} onClick={() => changeActiveNavPath('/list')} to='/list'>List</Link>
-                        <Link className={activeNavPath === '/about' ? 'nav-link active' : 'nav-link'} style={navPath} onClick={() => changeActiveNavPath('/about')} to='/about'>About</Link>
+                        <Link className={`${activeNavPath === '/add-item' && 'active'} nav-link`} style={navPath} onClick={() => changeActiveNavPath('/add-item')} to='/add-item'>Add Item</Link>
+                        <Link className={`${activeNavPath === '/list' && 'active'} nav-link`} style={navPath} onClick={() => changeActiveNavPath('/list')} to='/list'>List</Link>
+                        <Link className={`${activeNavPath === '/about' && 'active'} nav-link`} style={navPath} onClick={() => changeActiveNavPath('/about')} to='/about'>About</Link>
                     </div>
                 </div>
             </div>
