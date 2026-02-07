@@ -34,10 +34,10 @@ export default function List({list, setList}){
             
             // Changes active sort based on updated property
             if(tempProp !== undefined){
-                const updatedProp = {...prev, prop: tempProp} 
+                const newActiveSort = {...prev, prop: tempProp} 
                 if(descending === null) // executes if sort options changed for the first time (ascending order by default)
-                    return {...updatedProp, descending: false}
-                return updatedProp
+                    return {...newActiveSort, descending: false}
+                return newActiveSort
             } 
 
             // Changes active sort based on updated sorting
