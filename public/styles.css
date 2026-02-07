@@ -27,3 +27,8 @@ form {
     margin-bottom: 40px;
 }
 
+/* Override Bootstrap CSS */
+
+.dropdown-item.active {
+    background-color: gray;
+}

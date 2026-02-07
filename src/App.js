@@ -11,6 +11,7 @@ import AddItem from './pages/AddItem';
 export default function App() {
 
   const [list, setList] = useState([]) // list of items
+  const [idCounter, setIdCounter] = useState(0) // tracks items by id
   const {pathname} = useLocation() // will need to fetch current pathname whenever web page gets reloaded
 
   return (
@@ -19,7 +20,7 @@ export default function App() {
       <Routes> 
           <Route path='/' element={<Home />}/>
           <Route path='/about' element={<About />}/>
-          <Route path='/add-item' element={<AddItem setList={setList} />}/>
+          <Route path='/add-item' element={<AddItem setList={setList} idCounter={idCounter} setIdCounter={setIdCounter}/>}/>
           <Route path='/list' element={<List list={list} setList={setList}/>}/>
       </Routes>
       <Footer />

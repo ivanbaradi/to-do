@@ -2,7 +2,7 @@ import TextField from '../components/form/TextField'
 import FormButton from '../components/form/FormButton'
 import { useState } from "react"
 
-export default function AddItem({setList}){
+export default function AddItem({setList, idCounter, setIdCounter}){
 
     // title and description for new item
     const [title, setTitle] = useState('')
@@ -40,13 +40,14 @@ export default function AddItem({setList}){
         setList(prevItems => [
             ...prevItems, 
             {
+                id: idCounter,
                 title, 
                 desc, 
                 timestamp,
                 checked: false
             }
         ])
-
+        setIdCounter(idCounter+1)
         clearInputs()
     }
 
