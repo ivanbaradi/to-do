@@ -13,7 +13,7 @@ export default function List({list, setList}){
      * @param {number} tempId target index of the item to delete
      */
     function deleteItem(tempId){
-        setList(() => list.filter(({id}) => id !== tempId))
+        setList(list.filter(({id}) => id !== tempId))
     }
 
     /**
