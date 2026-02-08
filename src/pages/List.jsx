@@ -56,8 +56,10 @@ export default function List({list, setList}){
         
         if(prop === null && descending === null)
             return 
+
+        const options = {sensivity: 'base', numeric: true}
         
-        return descending ? b[prop].localeCompare(a[prop], undefined, {sensivity: 'base'}) : a[prop].localeCompare(b[prop], undefined, {sensivity: 'base'})
+        return descending ? b[prop].localeCompare(a[prop], undefined, options) : a[prop].localeCompare(b[prop], undefined, options)
     })), [activeSort])
 
     // Displays error message due to zero items in the list
