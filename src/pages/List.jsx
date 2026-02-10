@@ -1,5 +1,6 @@
 import Item from '../components/item/Item'
-import Dropdown from '../components/Dropdown'
+import ListButton from '../components/list/ListButton'
+import ListDropdown from '../components/list/ListDropdown'
 import { useState, useEffect } from 'react'
 
 export default function List({list, setList}){
@@ -16,6 +17,11 @@ export default function List({list, setList}){
      */
     function deleteItem(tempId){
         setList(list.filter(({id}) => id !== tempId))
+    }
+
+    /** Deletes all checked items */
+    function deleteCheckedItems(){
+        setList(list.filter(({checked}) => !checked))
     }
 
     /**
@@ -77,15 +83,15 @@ export default function List({list, setList}){
         <main className='sub-content' style={{marginTop: '40px'}}>
             <div className='container' style={{marginBottom: '20px'}}>
                 <div className='row'>
-                    <Dropdown 
+                    <ListDropdown 
                         header='Sort'
                         optionGroups={[
                             {
-                                subheader: 'Type',
+                                subheader: 'Type', // subheader is optional (no need to include this prop)
                                 options: [
                                     {
                                         option: 'Title', // name of the option
-                                        activeComparison: prop === 'title' && 'active', // comparison to for styling option
+                                        activeComparison: prop === 'title' && 'active', // comparison for styling option
                                         optionFunc: () => changeActiveSort({tempProp: 'title'}) // function associated with option
                                     },
                                     {
@@ -113,11 +119,10 @@ export default function List({list, setList}){
                         ]}
                     />
 
-                    <Dropdown 
+                    <ListDropdown 
                         header='Filter'
                         optionGroups={[
                             {
-                                // subheader: 'Checked Items',
                                 options: [
                                     {
                                         option: 'Checked',
@@ -133,7 +138,15 @@ export default function List({list, setList}){
                             }
                         ]}                    
                     />
+                    <ListButton
+                        buttonColor='btn-danger'
+                        text='Delete All Checked'
+                        func={() => deleteCheckedItems()}
+                        width='200px' 
+                    />
                 </div>
+
+
             </div>
             <div>
             {
