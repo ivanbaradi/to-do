@@ -1,6 +1,6 @@
 import ItemButton from "./ItemButton"
 
-export default function Item({id, title, desc, timestamp, checked, deleteItem, checkItem}){
+export default function Item({id, title, desc, timestamp, checked, ...props}){
 
     const timeStamp = {
         fontSize: '12px', 
@@ -31,14 +31,14 @@ export default function Item({id, title, desc, timestamp, checked, deleteItem, c
                                 buttonVariant={checked ? 'btn-secondary' : 'btn-success'}
                                 iconName='check_box'
                                 text={checked ? 'Uncheck' : 'Check'}
-                                func={checkItem}
+                                func={props.checkItem}
                             />   
                             <ItemButton 
                                 id={id}
                                 buttonVariant='btn-danger'
                                 iconName='delete'
                                 text='Delete'
-                                func={deleteItem}
+                                func={props.deleteItem}
                             />
                         </div>
                     </div>
