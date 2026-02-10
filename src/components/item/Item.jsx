@@ -22,20 +22,20 @@ export default function Item({id, title, desc, timestamp, checked, ...props}){
                     <div className="container" style={{padding: 0}}>
                         <div className="row">
                             <ItemButton 
-                                buttonVariant='btn-primary'
+                                buttonColor='btn-primary'
                                 iconName='edit'
                                 text='Edit'
                             />
                             <ItemButton 
                                 id={id}
-                                buttonVariant={checked ? 'btn-secondary' : 'btn-success'}
+                                buttonColor={checked ? 'btn-secondary' : 'btn-success'}
                                 iconName='check_box'
                                 text={checked ? 'Uncheck' : 'Check'}
                                 func={props.checkItem}
                             />   
                             <ItemButton 
                                 id={id}
-                                buttonVariant='btn-danger'
+                                buttonColor='btn-danger'
                                 iconName='delete'
                                 text='Delete'
                                 func={props.deleteItem}

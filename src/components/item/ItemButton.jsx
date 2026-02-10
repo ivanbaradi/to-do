@@ -1,6 +1,6 @@
 import { useMediaQuery } from "react-responsive"
 
-export default function ItemButton({buttonVariant, iconName, text, func, id}){
+export default function ItemButton({buttonColor, iconName, text, ...props}){
 
     const button = {
         display: 'inline-flex',
@@ -18,7 +18,7 @@ export default function ItemButton({buttonVariant, iconName, text, func, id}){
 
     return (
         <div className="col-12">
-            <button className={`btn ${buttonVariant}`} style={button} onClick={() => {if(func !== undefined){func(id)}}}>
+            <button className={`btn ${buttonColor}`} style={button} onClick={() => {if(props.func !== undefined){props.func(props.id)}}}>
                 <i className="material-symbols-outlined">{iconName}</i>
                 <span style={textCSS}>{text}</span>
             </button>
