@@ -4,9 +4,11 @@ import { useState, useEffect } from 'react'
 
 export default function List({list, setList}){
 
+    // Configures active property and order for sorting items
     const [activeSort, setActiveSort] = useState({prop: null, descending: null})
-    const [activeFilter, setActiveFilter] = useState(null)
     const {prop, descending} = activeSort
+    // Configures active filter for filtering items
+    const [activeFilter, setActiveFilter] = useState(null)
 
     /**
      * Deletes item from the ToDo list
@@ -25,7 +27,7 @@ export default function List({list, setList}){
     }
 
     /**
-     * Changes active sort after configuring sort settings
+     * Changes active sort based on specific property and order
      * @param {object} tempProps  temporary object with props to configure a sorting list
      */
     function changeActiveSort(tempProps){
@@ -44,7 +46,7 @@ export default function List({list, setList}){
     }
 
     /**
-     * Filters items based on prop
+     * Changes active filter based on specific property
      * @param {boolean} prop prop of items to only include
      */
     function changeActiveFilter(prop){
@@ -62,13 +64,17 @@ export default function List({list, setList}){
         return descending ? b[prop].localeCompare(a[prop], undefined, options) : a[prop].localeCompare(b[prop], undefined, options)
     })), [activeSort])
 
+    // Filters items after filter option is configured (checked option only)
+    const filteredList = list.filter(({checked}) => activeFilter === 'checked' ? checked : !checked)
+    // List that gets displayed on the web page 
+    const listUI = (activeFilter !== null) ? filteredList : list
+
     // Displays error message due to zero items in the list
     if(list.length === 0)
-        return <h2 style={{margin: '50px 0'}}>You do not have any items in the list</h2>
+        return <h2 style={{margin: '50px 0'}}>There are no items in the list.</h2>
 
     return (
         <main className='sub-content' style={{marginTop: '40px'}}>
-            
             <div className='container' style={{marginBottom: '20px'}}>
                 <div className='row'>
                     <Dropdown 
@@ -129,26 +135,32 @@ export default function List({list, setList}){
                     />
                 </div>
             </div>
-            
-            <div className='container'>
-                <div className='row'>
-                    {
-                        list.map(({id, title, desc, timestamp, checked}) => 
-                            <Item 
-                                key={id}
-                                id={id}
-                                title={title}
-                                desc={desc}
-                                timestamp={timestamp}
-                                checked={checked}
-                                deleteItem={deleteItem}
-                                checkItem={checkItem}
-                            />
-                        )
-                    }
+            <div>
+            {
+                (listUI.length === 0) 
+                ?
+                <h2 style={{margin: '50px 0'}}>No results found</h2>
+                :
+                <div className='container'>
+                    <div className='row'>
+                        {
+                            listUI.map(({id, title, desc, timestamp, checked}) => 
+                                <Item 
+                                    key={id}
+                                    id={id}
+                                    title={title}
+                                    desc={desc}
+                                    timestamp={timestamp}
+                                    checked={checked}
+                                    deleteItem={deleteItem}
+                                    checkItem={checkItem}
+                                />
+                            )
+                        }
+                    </div>
                 </div>
-            </div>
+            }
+            </div> 
         </main>
-    )
-    
+    ) 
 }
