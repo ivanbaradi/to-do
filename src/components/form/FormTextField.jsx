@@ -1,4 +1,4 @@
-export default function TextField({name, charLimit, label, input, inputElement, emptyInput}){
+export default function FormTextField({name, charLimit, label, input, inputElement, emptyInput}){
 
     const _label = {
         display: 'block',

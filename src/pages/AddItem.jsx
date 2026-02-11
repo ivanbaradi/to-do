@@ -1,4 +1,4 @@
-import TextField from '../components/form/TextField'
+import FormTextField from '../components/form/FormTextField'
 import FormButton from '../components/form/FormButton'
 import { useState } from "react"
 
@@ -82,7 +82,7 @@ export default function AddItem({setList, idCounter, setIdCounter}){
 
     return (
         <form>
-            <TextField 
+            <FormTextField 
                 name='title'
                 charLimit={titleCharLimit}
                 label='Title'
@@ -100,7 +100,7 @@ export default function AddItem({setList, idCounter, setIdCounter}){
                 />}
                 emptyInput={emptyTitle} // indicates required field 
             />
-            <TextField 
+            <FormTextField 
                 name='desc'
                 charLimit={descCharLimit}
                 label='Description'

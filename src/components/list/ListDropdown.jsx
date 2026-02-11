@@ -1,4 +1,4 @@
-export default function({header, optionGroups}){
+export default function ListDropdown({header, optionGroups}){
 
     const subHeader = {
         fontSize: '11px',

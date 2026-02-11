@@ -1,4 +1,4 @@
-export default function({buttonColor, text, func, ...props}){
+export default function ListButton({buttonColor, text, func, ...props}){
 
     return (
         <div className='btn-group col-4' style={{width: props.width}}>
