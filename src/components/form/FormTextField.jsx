@@ -1,4 +1,4 @@
-export default function FormTextField({name, charLimit, label, input, inputElement, emptyInput}){
+export default function FormTextField({name, charLimit, label, input, inputElement, ...props}){
 
     const _label = {
         display: 'block',
@@ -10,7 +10,7 @@ export default function FormTextField({name, charLimit, label, input, inputEleme
         textAlign: 'left',
         color: 'red',
         paddingLeft: '5px',
-        display: emptyInput ? 'grid' : 'none'
+        display: props.emptyInput ? 'grid' : 'none'
     }
 
     const _charLimit = {
