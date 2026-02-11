@@ -145,14 +145,12 @@ export default function List({list, setList}){
                         width='200px' 
                     />
                 </div>
-
-
             </div>
             <div>
             {
                 (listUI.length === 0) 
                 ?
-                <h2 style={{margin: '50px 0'}}>No results found</h2>
+                <h2 style={{margin: '50px 0'}}>No results found.</h2>
                 :
                 <div className='container'>
                     <div className='row'>
