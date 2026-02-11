@@ -1,5 +1,6 @@
 import FormTextField from '../components/form/FormTextField'
 import FormButton from '../components/form/FormButton'
+import inputCharLimits from '../data/inputCharLimits.json'
 import { useState } from "react"
 
 export default function AddItem({setList, idCounter, setIdCounter}){
@@ -12,8 +13,7 @@ export default function AddItem({setList, idCounter, setIdCounter}){
     const [emptyTitle, setEmptyTitle] = useState(null)
 
     // max input character limits
-    const titleCharLimit = 50
-    const descCharLimit = 150
+    const {titleCharLimit, descCharLimit} = inputCharLimits
 
     /**
      * Adds new item to the To Do List
@@ -61,24 +61,36 @@ export default function AddItem({setList, idCounter, setIdCounter}){
     }
 
     /**
-     * Handles key presses
-     * @param {React.KeyboardEvent<HTMLInputElement>} event - key button associated with the event
+     * Halts input typing if text length is greater than character limit
+     * @param {React.KeyboardEvent<HTMLInputElement>} event - triggered to halt input typing
      */
-    function keyPressed(event){
+    function haltInput(event){
         
         const {name} = event.target
         const {key} = event
 
         if(key === 'Backspace')
-            return
-        
+            return  
+
         if((name === 'title' && title.length >= titleCharLimit) || (name === 'desc' && desc.length >= descCharLimit))
             event.preventDefault()
     }
 
-    const input = {
-        fontWeight: 300
+    /**
+     * Slices input text if their length is greater than character limit
+     * @param {React.ChangeEvent<HTMLInputElement>} event - triggered to slice text
+     */
+    function sliceText(event){
+        
+        const {name, value} = event.target
+
+        if(name === 'title')
+            setTitle(value.length > titleCharLimit ? value.slice(0, titleCharLimit) : value)
+        else // name === 'desc'
+            setDesc(value.length > descCharLimit ? value.slice(0, descCharLimit) : value)
     }
+
+    const input = {fontWeight: 300}
 
     return (
         <form>
@@ -94,8 +106,8 @@ export default function AddItem({setList, idCounter, setIdCounter}){
                     className="form-control" 
                     id='title' 
                     value={title} 
-                    onChange={event => setTitle(event.target.value)}
-                    onKeyDown={keyPressed}
+                    onChange={sliceText}
+                    onKeyDown={haltInput}
                     placeholder='Enter title'
                 />}
                 emptyInput={emptyTitle} // indicates required field 
@@ -112,8 +124,8 @@ export default function AddItem({setList, idCounter, setIdCounter}){
                     id="desc" 
                     value={desc} 
                     rows="5" 
-                    onChange={event => setDesc(event.target.value)}
-                    onKeyDown={keyPressed} 
+                    onChange={sliceText}
+                    onKeyDown={haltInput} 
                     placeholder="Enter description (optional)" 
                 />}
             />
