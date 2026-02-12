@@ -79,7 +79,7 @@ export default function AddItem({setList, idCounter, setIdCounter}){
 
     /**
      * Sets input values from the form
-     * @param {React.ChangeEvent<HTMLInputElement>} event - triggered to slice text
+     * @param {React.ChangeEvent<HTMLInputElement>} event - triggered to set text
      * @param {number} charLimit - character limit of an input
      * @param {React.Dispatch<React.SetStateAction<string>>} setText - setState of an input
      */
