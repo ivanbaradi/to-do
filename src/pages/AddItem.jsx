@@ -78,14 +78,14 @@ export default function AddItem({setList, idCounter, setIdCounter}){
     }
 
     /**
-     * Slices input text if their length is greater than character limit
+     * Sets input values from the form
      * @param {React.ChangeEvent<HTMLInputElement>} event - triggered to slice text
      * @param {number} charLimit - character limit of an input
-     * @param {React.Dispatch<React.SetStateAction<string>>} setInput - setState of an input
+     * @param {React.Dispatch<React.SetStateAction<string>>} setText - setState of an input
      */
-    function sliceInput(event, charLimit, setInput){
+    function setInput(event, charLimit, setText){
         const {value} = event.target
-        setInput(value.length > charLimit ? value.slice(0, charLimit) : value)
+        setText(value.length > charLimit ? value.slice(0, charLimit) : value)
     }
 
     const input = {fontWeight: 300}
@@ -104,7 +104,7 @@ export default function AddItem({setList, idCounter, setIdCounter}){
                     className="form-control" 
                     id='title' 
                     value={title} 
-                    onChange={event => sliceInput(event, titleCharLimit, setTitle)}
+                    onChange={event => setInput(event, titleCharLimit, setTitle)}
                     onKeyDown={event => haltInput(event, titleCharLimit)}
                     placeholder='Enter title'
                 />}
@@ -122,7 +122,7 @@ export default function AddItem({setList, idCounter, setIdCounter}){
                     id="desc" 
                     value={desc} 
                     rows="5" 
-                    onChange={event => sliceInput(event, descCharLimit, setDesc)}
+                    onChange={event => setInput(event, descCharLimit, setDesc)}
                     onKeyDown={event => haltInput(event, descCharLimit)} 
                     placeholder="Enter description (optional)" 
                 />}
