@@ -63,31 +63,29 @@ export default function AddItem({setList, idCounter, setIdCounter}){
     /**
      * Halts input typing if text length is greater than character limit
      * @param {React.KeyboardEvent<HTMLInputElement>} event - triggered to halt input typing
+     * @param {number} charLimit - character limit of an input
      */
-    function haltInput(event){
+    function haltInput(event, charLimit){
         
-        const {name} = event.target
+        const {value} = event.target
         const {key} = event
 
         if(key === 'Backspace')
             return  
 
-        if((name === 'title' && title.length >= titleCharLimit) || (name === 'desc' && desc.length >= descCharLimit))
+        if(value.length >= charLimit)
             event.preventDefault()
     }
 
     /**
      * Slices input text if their length is greater than character limit
      * @param {React.ChangeEvent<HTMLInputElement>} event - triggered to slice text
+     * @param {number} charLimit - character limit of an input
+     * @param {React.Dispatch<React.SetStateAction<string>>} setInput - setState of an input
      */
-    function sliceText(event){
-        
-        const {name, value} = event.target
-
-        if(name === 'title')
-            setTitle(value.length > titleCharLimit ? value.slice(0, titleCharLimit) : value)
-        else // name === 'desc'
-            setDesc(value.length > descCharLimit ? value.slice(0, descCharLimit) : value)
+    function sliceInput(event, charLimit, setInput){
+        const {value} = event.target
+        setInput(value.length > charLimit ? value.slice(0, charLimit) : value)
     }
 
     const input = {fontWeight: 300}
@@ -106,8 +104,8 @@ export default function AddItem({setList, idCounter, setIdCounter}){
                     className="form-control" 
                     id='title' 
                     value={title} 
-                    onChange={sliceText}
-                    onKeyDown={haltInput}
+                    onChange={event => sliceInput(event, titleCharLimit, setTitle)}
+                    onKeyDown={event => haltInput(event, titleCharLimit)}
                     placeholder='Enter title'
                 />}
                 emptyInput={emptyTitle} // indicates required field 
@@ -124,8 +122,8 @@ export default function AddItem({setList, idCounter, setIdCounter}){
                     id="desc" 
                     value={desc} 
                     rows="5" 
-                    onChange={sliceText}
-                    onKeyDown={haltInput} 
+                    onChange={event => sliceInput(event, descCharLimit, setDesc)}
+                    onKeyDown={event => haltInput(event, descCharLimit)} 
                     placeholder="Enter description (optional)" 
                 />}
             />
