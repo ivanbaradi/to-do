@@ -74,6 +74,7 @@ export default function List({list, setList}){
     const filteredList = list.filter(({checked}) => activeFilter === 'checked' ? checked : !checked)
     // List that gets displayed on the web page 
     const listUI = (activeFilter !== null) ? filteredList : list
+    const n = listUI.length
 
     // Displays error message due to zero items in the list
     if(list.length === 0)
@@ -91,7 +92,7 @@ export default function List({list, setList}){
                                 options: [
                                     {
                                         option: 'Title', // name of the option
-                                        activeComparison: prop === 'title' && 'active', // comparison for styling option
+                                        activeComparison: prop === 'title' && 'active', // comparison for highlight active option
                                         optionFunc: () => changeActiveSort({tempProp: 'title'}) // function associated with option
                                     },
                                     {
@@ -117,6 +118,7 @@ export default function List({list, setList}){
                                 ]
                             }
                         ]}
+                        mobileMarginAdjust={true}
                     />
 
                     <ListDropdown 
@@ -136,13 +138,15 @@ export default function List({list, setList}){
                                     }
                                 ]
                             }
-                        ]}                    
+                        ]}   
+                        mobileMarginAdjust={true}                 
                     />
                     <ListButton
                         buttonColor='btn-danger'
                         text='Delete All Checked'
-                        func={() => deleteCheckedItems()}
+                        func={deleteCheckedItems}
                         width='200px' 
+                        mobileMarginAdjust={false}
                     />
                 </div>
             </div>
@@ -155,7 +159,7 @@ export default function List({list, setList}){
                 <div className='container'>
                     <div className='row'>
                         {
-                            listUI.map(({id, title, desc, timestamp, checked}) => 
+                            listUI.map(({id, title, desc, timestamp, checked}, i) => 
                                 <Item 
                                     key={id}
                                     id={id}
@@ -165,6 +169,9 @@ export default function List({list, setList}){
                                     checked={checked}
                                     deleteItem={deleteItem}
                                     checkItem={checkItem}
+                                    mobileMarginAdjust={i < n-1}
+                                    tabletMarginAdjust={i < n-2}
+                                    laptopMarginAdjust={i < n-3}
                                 />
                             )
                         }
