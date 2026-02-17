@@ -16,14 +16,14 @@ export default function Item({id, title, desc, timestamp, checked, ...props}){
         textDecoration: checked ? 'line-through 5px black' : 'none'
     }
 
-    const featureMarginQuery = onMobile ? props.mobileMarginAdjust && {marginBottom: '40px'} : 
+    const marginAdjust = onMobile ? props.mobileMarginAdjust && {marginBottom: '40px'} : 
     onTablet ? props.tabletMarginAdjust && {marginBottom: '25px'} : 
     onLaptop ? props.laptopMarginAdjust && {marginBottom: '25px'} :
     {marginBottom: '25px'} // for way bigger devices
 
     return (
         
-        <div className="col-xl-3 col-lg-4 col-md-6" style={{...featureMarginQuery}}>
+        <div className="col-xl-3 col-lg-4 col-md-6" style={{...marginAdjust}}>
             <div className="card">
                 <div className="card-body" style={{textAlign: 'left'}}>
                     <h5 className="card-title" style={crossItem}>{title}</h5>

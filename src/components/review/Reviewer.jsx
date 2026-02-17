@@ -1,6 +1,6 @@
 import { useMediaQuery } from "react-responsive"
 
-export default function Reviewer({name, caption, text, tabletMarginAdjust, laptopMarginAdjust}){
+export default function Reviewer({name, caption, text, ...props}){
 
     // adjusts CSS for mobile and tablet users
     const onMobile = useMediaQuery({maxWidth: 767})
@@ -41,10 +41,10 @@ export default function Reviewer({name, caption, text, tabletMarginAdjust, lapto
     }
 
     // media responsiveness to dynamically change margin bottoms between reviewers
-    const reviewMarginQuery =  {marginBottom: ((onTablet && tabletMarginAdjust) || laptopMarginAdjust) && '50px'}
+    const marginAdjust =  {marginBottom: ((onTablet && props.tabletMarginAdjust) || props.laptopMarginAdjust) && '50px'}
 
     return (
-        <div className="col-lg-6" style={reviewMarginQuery}>
+        <div className="col-lg-6" style={marginAdjust}>
             <div className="row" style={reviewer}>
                 <div className="col-md-4" style={section1}>
                     <i className="material-symbols-outlined" style={icon}>sentiment_very_satisfied</i>
