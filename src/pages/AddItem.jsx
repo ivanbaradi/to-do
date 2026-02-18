@@ -61,23 +61,6 @@ export default function AddItem({setList, idCounter, setIdCounter}){
     }
 
     /**
-     * Halts input typing if text length is greater than character limit
-     * @param {React.KeyboardEvent<HTMLInputElement>} event - triggered to halt input typing
-     * @param {number} charLimit - character limit of an input
-     */
-    function haltInput(event, charLimit){
-        
-        const {value} = event.target
-        const {key} = event
-
-        if(key === 'Backspace')
-            return  
-
-        if(value.length >= charLimit)
-            event.preventDefault()
-    }
-
-    /**
      * Sets input values from the form
      * @param {React.ChangeEvent<HTMLInputElement>} event - triggered to set text
      * @param {number} charLimit - character limit of an input
@@ -105,7 +88,6 @@ export default function AddItem({setList, idCounter, setIdCounter}){
                     id='title' 
                     value={title} 
                     onChange={event => setInput(event, titleCharLimit, setTitle)}
-                    onKeyDown={event => haltInput(event, titleCharLimit)}
                     placeholder='Enter title'
                 />}
                 emptyInput={emptyTitle} // indicates required field 
@@ -123,7 +105,6 @@ export default function AddItem({setList, idCounter, setIdCounter}){
                     value={desc} 
                     rows="5" 
                     onChange={event => setInput(event, descCharLimit, setDesc)}
-                    onKeyDown={event => haltInput(event, descCharLimit)} 
                     placeholder="Enter description (optional)" 
                 />}
             />
