@@ -37,8 +37,8 @@ export default function AddItem({setList, idCounter, setIdCounter}){
         })
         .replace('at', '')
 
-        setList(prevItems => [
-            ...prevItems, 
+        setList(prevList => [
+            ...prevList, 
             {
                 id: idCounter,
                 title, 
