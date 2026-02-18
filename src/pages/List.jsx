@@ -89,7 +89,7 @@ export default function List({list, setList}){
                         optionGroups={[
                             {
                                 subheader: 'Type', // subheader is optional (no need to include this prop)
-                                options: [
+                                options: [ // list of options per each option group
                                     {
                                         option: 'Title', // name of the option
                                         activeComparison: prop === 'title' && 'active', // comparison for highlight active option
@@ -167,11 +167,12 @@ export default function List({list, setList}){
                                     desc={desc}
                                     timestamp={timestamp}
                                     checked={checked}
-                                    deleteItem={deleteItem}
-                                    checkItem={checkItem}
+                                    deleteItem={() => deleteItem(id)}
+                                    checkItem={() => checkItem(id)}
                                     mobileMarginAdjust={i < n-1}
                                     tabletMarginAdjust={i < n-2}
                                     laptopMarginAdjust={i < n-3}
+                                    setList={setList}
                                 />
                             )
                         }

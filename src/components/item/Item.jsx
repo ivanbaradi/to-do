@@ -1,11 +1,66 @@
 import ItemButton from "./ItemButton"
+import inputCharLimits from '../../data/inputCharLimits.json'
 import { useMediaQuery } from "react-responsive"
+import { useState, useEffect } from "react"
 
 export default function Item({id, title, desc, timestamp, checked, ...props}){
 
+    // Character limits for inputs
+    const {titleCharLimit, descCharLimit} = inputCharLimits
+
+    // Responsive media
     const onMobile = useMediaQuery({maxWidth: 767})
     const onTablet = useMediaQuery({maxWidth: 991})
     const onLaptop = useMediaQuery({maxWidth: 1199})
+
+    // Edit mode
+    const [onEdit, setOnEdit] = useState(false)
+    const [newTitle, setNewTitle] = useState(title)
+    const [newDesc, setNewDesc] = useState(desc)
+
+    /**
+     * Sets input values from the item
+     * @param {React.ChangeEvent<HTMLInputElement>} event - triggered to set text
+     * @param {number} charLimit - character limit of an input
+     * @param {React.Dispatch<React.SetStateAction<string>>} setText - setState of an input
+     */
+    function setInput(event, charLimit, setText){
+        const {value} = event.target
+        setText(value.length > charLimit ? value.slice(0, charLimit) : value)
+    }
+
+    // Configues edit mode
+    function configureOnEdit(){
+
+        // Saves item after editing mode is complete
+        function saveItem(){
+            if(newTitle.length === 0)
+                return
+            
+            const timestamp = new Date()
+            .toLocaleString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+                hour: 'numeric',
+                minute: 'numeric',
+            })
+            .replace('at', '')
+
+            props.setList(prevList => prevList.map(item => (item.id === id) ? 
+            {...item, 
+                title: newTitle, 
+                timestamp,
+                desc: newDesc, 
+            } : item ))
+        }
+
+        if(onEdit)
+            saveItem()
+
+        setOnEdit(onEdit ? false : true)
+    }
+ 
 
     const timeStamp = {
         fontSize: '12px', 
@@ -26,25 +81,34 @@ export default function Item({id, title, desc, timestamp, checked, ...props}){
         <div className="col-xl-3 col-lg-4 col-md-6" style={{...marginAdjust}}>
             <div className="card">
                 <div className="card-body" style={{textAlign: 'left'}}>
-                    <h5 className="card-title" style={crossItem}>{title}</h5>
+                    
+                    {onEdit ?
+                        <input className="card-title" value={newTitle} onChange={event => setInput(event, titleCharLimit, setNewTitle)}/> : 
+                        <h5 className="card-title" style={crossItem}>{newTitle}</h5>
+                    } 
+
                     <h6 className="card-subtitle mb-2 text-body-secondary" style={{...timeStamp, ...crossItem}}>{timestamp}</h6>
-                    <p className="card-text" style={{...{fontSize: '14px'}, ...crossItem}}>{desc}</p>
+
+                    {onEdit ?
+                        <textarea className="card-text" style={{fontSize: '14px'}} value={newDesc} cols="31" onChange={event => setInput(event, descCharLimit, setNewDesc)} /> :
+                        <p className="card-text" style={{...{fontSize: '14px'}, ...crossItem}}>{newDesc}</p>
+                    }
+
                     <div className="container" style={{padding: 0}}>
                         <div className="row">
                             <ItemButton 
                                 buttonColor='btn-primary'
                                 iconName='edit'
-                                text='Edit'
+                                text={onEdit ? 'Save' : 'Edit'}
+                                func={configureOnEdit}
                             />
                             <ItemButton 
-                                id={id}
                                 buttonColor={checked ? 'btn-secondary' : 'btn-success'}
                                 iconName='check_box'
                                 text={checked ? 'Uncheck' : 'Check'}
                                 func={props.checkItem}
                             />   
                             <ItemButton 
-                                id={id}
                                 buttonColor='btn-danger'
                                 iconName='delete'
                                 text='Delete'
