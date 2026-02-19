@@ -17,6 +17,7 @@ export default function Item({id, title, desc, timestamp, checked, ...props}){
     const [onEdit, setOnEdit] = useState(false)
     const [newTitle, setNewTitle] = useState(title)
     const [newDesc, setNewDesc] = useState(desc)
+    const [finalTitle, setFinalTitle] = useState(title) // used to invoke function that sort items
 
     /**
      * Sets input values from the item
@@ -29,38 +30,43 @@ export default function Item({id, title, desc, timestamp, checked, ...props}){
         setText(value.length > charLimit ? value.slice(0, charLimit) : value)
     }
 
+    // Saves item after editing mode is complete
+    function saveItem(){
+        
+        const timestamp = new Date()
+        .toLocaleString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+            hour: 'numeric',
+            minute: 'numeric',
+        })
+        .replace('at', '')
+
+        props.setList(prevList => prevList.map(item => (item.id === id) ? 
+        {...item, 
+            title: newTitle, 
+            timestamp,
+            desc: newDesc, 
+        } : item ))
+
+        setFinalTitle(newTitle)
+    }
+
     // Configues edit mode
     function configureOnEdit(){
 
-        // Saves item after editing mode is complete
-        function saveItem(){
-            if(newTitle.length === 0)
-                return
-            
-            const timestamp = new Date()
-            .toLocaleString('en-US', {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric',
-                hour: 'numeric',
-                minute: 'numeric',
-            })
-            .replace('at', '')
+        if(newTitle.length === 0)
+            return
 
-            props.setList(prevList => prevList.map(item => (item.id === id) ? 
-            {...item, 
-                title: newTitle, 
-                timestamp,
-                desc: newDesc, 
-            } : item ))
-        }
-
-        if(onEdit)
+        if(onEdit && (newTitle !== title || newDesc !== desc))
             saveItem()
 
         setOnEdit(onEdit ? false : true)
     }
- 
+
+    // Invoked after editing an item
+    useEffect(props.sortItems, [finalTitle])
 
     const timeStamp = {
         fontSize: '12px', 

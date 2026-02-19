@@ -10,6 +10,11 @@ export default function List({list, setList}){
     const {prop, descending} = activeSort
     // Configures active filter for filtering items
     const [activeFilter, setActiveFilter] = useState(null)
+    // Filters items after filter option is configured (checked option only)
+    const filteredList = list.filter(({checked}) => activeFilter === 'checked' ? checked : !checked)
+    // List that gets displayed on the web page 
+    const listUI = (activeFilter !== null) ? filteredList : list
+    const n = listUI.length
 
     /**
      * Deletes item from the ToDo list
@@ -60,21 +65,20 @@ export default function List({list, setList}){
     }
 
     // Sorts items after all sorting options are configured
-    useEffect(() => setList(() => list.toSorted((a, b) => {
-        
+    function sortItems(){
+
         if(prop === null && descending === null)
             return 
 
-        const options = {sensivity: 'base', numeric: true}
-        
-        return descending ? b[prop].localeCompare(a[prop], undefined, options) : a[prop].localeCompare(b[prop], undefined, options)
-    })), [activeSort])
+        setList(list.toSorted((a, b) => {
+            const options = {sensivity: 'base', numeric: true}
+            return descending ? b[prop].localeCompare(a[prop], undefined, options) : a[prop].localeCompare(b[prop], undefined, options)
+        }))
 
-    // Filters items after filter option is configured (checked option only)
-    const filteredList = list.filter(({checked}) => activeFilter === 'checked' ? checked : !checked)
-    // List that gets displayed on the web page 
-    const listUI = (activeFilter !== null) ? filteredList : list
-    const n = listUI.length
+    }
+
+    // Invoked after configuring sort options
+    useEffect(sortItems, [activeSort])
 
     // Displays error message due to zero items in the list
     if(list.length === 0)
@@ -173,6 +177,7 @@ export default function List({list, setList}){
                                     tabletMarginAdjust={i < n-2}
                                     laptopMarginAdjust={i < n-3}
                                     setList={setList}
+                                    sortItems={sortItems}
                                 />
                             )
                         }
