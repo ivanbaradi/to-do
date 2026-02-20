@@ -3,7 +3,7 @@ import inputCharLimits from '../../data/inputCharLimits.json'
 import { useState, useEffect, useContext } from "react"
 import { ListContext } from "../../context/ListContext"
 import { setInput } from '../../utils/inputs'
-import { useMobile, useTablet, useLaptop } from "../../hooks/media"
+import { useMobile, useTablet, useLaptop } from "../../hooks/mediaQuery"
 
 export default function Item({id, title, desc, timestamp, checked, ...props}){
 

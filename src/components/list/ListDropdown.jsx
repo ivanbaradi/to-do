@@ -1,4 +1,4 @@
-import { useMobile } from "../../hooks/media"
+import { useMobile } from "../../hooks/mediaQuery"
 
 export default function ListDropdown({header, optionGroups, ...props}){
 

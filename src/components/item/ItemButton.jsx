@@ -1,5 +1,3 @@
-import { useMediaQuery } from "react-responsive"
-
 export default function ItemButton({buttonColor, iconName, text, func}){
 
     const button = {

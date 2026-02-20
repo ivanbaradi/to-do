@@ -1,4 +1,4 @@
-import { useMobile, useTablet } from "../../hooks/media"
+import { useMobile, useTablet } from "../../hooks/mediaQuery"
 
 export default function FeatureInfo({iconName, subTitle, desc, ...props}){
 
