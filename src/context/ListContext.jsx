@@ -28,7 +28,7 @@ export function ListProvider({children}){
                 checked: false // flag that determines whether the item is checked
             }
         ])
-        
+
         setIdCounter(idCounter+1)
     }
 
@@ -100,8 +100,18 @@ export function ListProvider({children}){
         }))
     }
 
+
+    /**
+     * Filters items (checked option only)
+     * @param {string} filter - string that filters items
+     * @returns {object[]} filtered list
+     */
+    function filterItems(filter){
+        return list.filter(({checked}) => filter === 'checked' ? checked : !checked)
+    }
+
     const states = {list, idCounter}
-    const methods = {addItem, saveItem, deleteCheckedItems, deleteItem, checkItem, sortItems}
+    const methods = {addItem, saveItem, deleteCheckedItems, deleteItem, checkItem, sortItems, filterItems}
 
     return <ListContext.Provider value={{...states, ...methods}}>{children}</ListContext.Provider>
 }

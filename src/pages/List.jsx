@@ -6,15 +6,15 @@ import { ListContext } from '../context/ListContext'
 
 export default function List(){
 
-    const {list, deleteItem, checkItem, deleteCheckedItems, sortItems } = useContext(ListContext)
+    const {list, deleteItem, checkItem, deleteCheckedItems, sortItems, filterItems } = useContext(ListContext)
 
     // Configures active property and order for sorting items
     const [activeSort, setActiveSort] = useState({prop: null, descending: null})
     const {prop, descending} = activeSort
     // Configures active filter for filtering items
     const [activeFilter, setActiveFilter] = useState(null)
-    // Filters items after filter option is configured (checked option only)
-    const filteredList = list.filter(({checked}) => activeFilter === 'checked' ? checked : !checked)
+    // Filters items after filter option is configured (Check option only)
+    const filteredList = filterItems(activeFilter)
     // List that gets displayed on the web page 
     const listUI = (activeFilter !== null) ? filteredList : list
     const n = listUI.length
