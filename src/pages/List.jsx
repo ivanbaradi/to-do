@@ -69,7 +69,7 @@ export default function List(){
                                         optionFunc: () => changeActiveSort({tempProp: 'title'}) // function associated with option
                                     },
                                     {
-                                        option: 'Date Added',
+                                        option: 'Date',
                                         activeComparison: prop === 'time' && 'active',
                                         optionFunc: () => changeActiveSort({tempProp: 'time'})
                                     }
