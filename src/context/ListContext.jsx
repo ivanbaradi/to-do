@@ -56,7 +56,7 @@ export function ListProvider({children}){
             {...item, 
                 title, 
                 time,
-                timestamp: getTimestamp(time),
+                timestamp: `${getTimestamp(time)} (Edited)`,
                 desc, 
             } : item )
         )
