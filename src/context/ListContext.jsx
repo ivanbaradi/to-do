@@ -39,7 +39,7 @@ export function ListProvider({children}){
 
 
     /**
-     * Saves item after editing mode is complete
+     * Saves item with new title and description
      * @param {number} id - id of the item 
      * @param {string} title - new title of the item
      * @param {string} desc - new description of the item
@@ -72,9 +72,9 @@ export function ListProvider({children}){
     }
 
     /**
-     * Sorts items from the list 
-     * @param {string} prop -
-     * @param {boolean} descending -
+     * Sorts items from the list based on property and order
+     * @param {string} prop - item's property, which determines how items are sorted by
+     * @param {boolean} descending - flag whether order is in descending order or not
      */
     function sortItems(prop, descending){
 
