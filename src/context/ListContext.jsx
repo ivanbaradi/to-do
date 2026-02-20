@@ -89,7 +89,6 @@ export function ListProvider({children}){
 
     const states = {list, idCounter}
     const methods = {addItem, saveItem, deleteCheckedItems, deleteItem, checkItem, sortItems}
-    const setStates = { setList }
 
-    return <ListContext.Provider value={{...states, ...methods, ...setStates}}>{children}</ListContext.Provider>
+    return <ListContext.Provider value={{...states, ...methods}}>{children}</ListContext.Provider>
 }
