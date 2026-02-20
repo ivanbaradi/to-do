@@ -1,15 +1,11 @@
-# 📝 To Do
-
-This projects manages your items in a To Do list application. Made with React and Bootstrap.
-
-## 🏀 Features
+# 🏀 Features
 
 - **Add Item:** You can add items to your To Do list.
 - **Edit Item:** You can edit information about your items
 - **Delete Item:** You can delete items if you no longer need them.
 - **Check Item:** You can check items by striking through them.
 
-## 🚀 How to Run
+# 🚀 How to Run
 
 1. Open your terminal.
 2. Choose a directory to clone this repository by commanding **cd**.
