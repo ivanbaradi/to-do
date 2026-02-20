@@ -1,9 +1,12 @@
 import Item from '../components/item/Item'
 import ListButton from '../components/list/ListButton'
 import ListDropdown from '../components/list/ListDropdown'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
+import { ListContext } from '../context/ListContext'
 
-export default function List({list, setList}){
+export default function List(){
+
+    const { list, deleteItem, checkItem, deleteCheckedItems, setList } = useContext(ListContext)
 
     // Configures active property and order for sorting items
     const [activeSort, setActiveSort] = useState({prop: null, descending: null})
@@ -15,27 +18,6 @@ export default function List({list, setList}){
     // List that gets displayed on the web page 
     const listUI = (activeFilter !== null) ? filteredList : list
     const n = listUI.length
-
-    /**
-     * Deletes item from the ToDo list
-     * @param {number} tempId target index of the item to delete
-     */
-    function deleteItem(tempId){
-        setList(list.filter(({id}) => id !== tempId))
-    }
-
-    /** Deletes all checked items */
-    function deleteCheckedItems(){
-        setList(list.filter(({checked}) => !checked))
-    }
-
-    /**
-     * Checks item from the ToDo list by crossing its details
-     * @param {number} tempId target index of the item to check
-     */
-    function checkItem(tempId){
-        setList(prev => prev.map(item => (item.id === tempId) ? {...item, checked: item.checked ? false : true} : item))
-    }
 
     /**
      * Changes active sort based on specific property and order
@@ -74,7 +56,6 @@ export default function List({list, setList}){
             const options = {sensivity: 'base', numeric: true}
             return descending ? b[prop].localeCompare(a[prop], undefined, options) : a[prop].localeCompare(b[prop], undefined, options)
         }))
-
     }
 
     // Invoked after configuring sort options
@@ -176,7 +157,6 @@ export default function List({list, setList}){
                                     mobileMarginAdjust={i < n-1}
                                     tabletMarginAdjust={i < n-2}
                                     laptopMarginAdjust={i < n-3}
-                                    setList={setList}
                                     sortItems={sortItems}
                                 />
                             )

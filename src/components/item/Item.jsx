@@ -1,9 +1,14 @@
 import ItemButton from "./ItemButton"
 import inputCharLimits from '../../data/inputCharLimits.json'
 import { useMediaQuery } from "react-responsive"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useContext } from "react"
+import { ListContext } from "../../context/ListContext"
+import { setInput } from '../../utils/inputs'
+
 
 export default function Item({id, title, desc, timestamp, checked, ...props}){
+
+    const {saveItem} = useContext(ListContext)
 
     // Character limits for inputs
     const {titleCharLimit, descCharLimit} = inputCharLimits
@@ -19,48 +24,16 @@ export default function Item({id, title, desc, timestamp, checked, ...props}){
     const [newDesc, setNewDesc] = useState(desc)
     const [finalTitle, setFinalTitle] = useState(title) // used to invoke function that sort items
 
-    /**
-     * Sets input values from the item
-     * @param {React.ChangeEvent<HTMLInputElement>} event - triggered to set text
-     * @param {number} charLimit - character limit of an input
-     * @param {React.Dispatch<React.SetStateAction<string>>} setText - setState of an input
-     */
-    function setInput(event, charLimit, setText){
-        const {value} = event.target
-        setText(value.length > charLimit ? value.slice(0, charLimit) : value)
-    }
-
-    // Saves item after editing mode is complete
-    function saveItem(){
-        
-        const timestamp = new Date()
-        .toLocaleString('en-US', {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric',
-            hour: 'numeric',
-            minute: 'numeric',
-        })
-        .replace('at', '')
-
-        props.setList(prevList => prevList.map(item => (item.id === id) ? 
-        {...item, 
-            title: newTitle, 
-            timestamp,
-            desc: newDesc, 
-        } : item ))
-
-        setFinalTitle(newTitle)
-    }
-
     // Configues edit mode
     function configureOnEdit(){
 
         if(newTitle.length === 0)
             return
 
-        if(onEdit && (newTitle !== title || newDesc !== desc))
-            saveItem()
+        if(onEdit && (newTitle !== title || newDesc !== desc)){
+            saveItem(id, newTitle, newDesc)
+            setFinalTitle(newTitle)
+        }
 
         setOnEdit(onEdit ? false : true)
     }

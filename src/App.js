@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { useState } from 'react';
+import { ListProvider } from './context/ListContext';
 import { useLocation } from 'react-router-dom';
 import About from "./pages/About";
 import List from './pages/List'
@@ -10,20 +10,18 @@ import AddItem from './pages/AddItem';
 
 export default function App() {
 
-  const [list, setList] = useState([]) // list of items
-  const [idCounter, setIdCounter] = useState(0) // tracks items by id
   const {pathname} = useLocation() // will need to fetch current pathname whenever web page gets reloaded
 
   return (
-    <div className="App">
+    <ListProvider>
       <NavBar pathname={pathname}/>
       <Routes> 
           <Route path='/' element={<Home />}/>
           <Route path='/about' element={<About />}/>
-          <Route path='/add-item' element={<AddItem setList={setList} idCounter={idCounter} setIdCounter={setIdCounter}/>}/>
-          <Route path='/list' element={<List list={list} setList={setList}/>}/>
+          <Route path='/add-item' element={<AddItem />}/>
+          <Route path='/list' element={<List />}/>
       </Routes>
       <Footer />
-    </div>
-  );
+    </ListProvider>
+  )
 }

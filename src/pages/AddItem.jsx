@@ -1,9 +1,13 @@
 import FormTextField from '../components/form/FormTextField'
 import FormButton from '../components/form/FormButton'
 import inputCharLimits from '../data/inputCharLimits.json'
-import { useState } from "react"
+import { useState, useContext } from "react"
+import { ListContext } from '../context/ListContext'
+import { setInput } from '../utils/inputs'
 
-export default function AddItem({setList, idCounter, setIdCounter}){
+export default function AddItem(){
+
+    const { addItem } = useContext(ListContext)
 
     // title and description for new item
     const [title, setTitle] = useState('')
@@ -15,63 +19,30 @@ export default function AddItem({setList, idCounter, setIdCounter}){
     // max input character limits
     const {titleCharLimit, descCharLimit} = inputCharLimits
 
+    const input = {fontWeight: 300}
+
     /**
      * Adds new item to the To Do List
      */
-    function addItem(){
+    function submitForm(){
 
-        // Raises error message
         if(title.length === 0){
             setEmptyTitle(true)
             return
         }
 
-        // Timestamp of the new item
-        const timestamp = new Date()
-        .toLocaleString('en-US', {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric',
-            hour: 'numeric',
-            minute: 'numeric',
-        })
-        .replace('at', '')
-
-        setList(prevList => [
-            ...prevList, 
-            {
-                id: idCounter,
-                title, 
-                desc, 
-                timestamp,
-                checked: false
-            }
-        ])
-        setIdCounter(idCounter+1)
-        clearInputs()
+        addItem(title, desc)
+        clearForm()
     }
 
     /**
      * Clears inputs
      */
-    function clearInputs(){
+    function clearForm(){
         setEmptyTitle(null)
         setTitle('')
         setDesc('')
     }
-
-    /**
-     * Sets input values from the form
-     * @param {React.ChangeEvent<HTMLInputElement>} event - triggered to set text
-     * @param {number} charLimit - character limit of an input
-     * @param {React.Dispatch<React.SetStateAction<string>>} setText - setState of an input
-     */
-    function setInput(event, charLimit, setText){
-        const {value} = event.target
-        setText(value.length > charLimit ? value.slice(0, charLimit) : value)
-    }
-
-    const input = {fontWeight: 300}
 
     return (
         <form>
@@ -112,12 +83,12 @@ export default function AddItem({setList, idCounter, setIdCounter}){
                 <div className="row">
                     <FormButton 
                         text='Clear'
-                        onClickEvent={clearInputs}
+                        onClickEvent={clearForm}
                         mobileMarginAdjust={true}
                     />
                     <FormButton 
                         text='Add'
-                        onClickEvent={addItem}
+                        onClickEvent={submitForm}
                         mobileMarginAdjust={false}
                     />
                 </div>
