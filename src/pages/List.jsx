@@ -70,8 +70,8 @@ export default function List(){
                                     },
                                     {
                                         option: 'Date Added',
-                                        activeComparison: prop === 'timestamp' && 'active',
-                                        optionFunc: () => changeActiveSort({tempProp: 'timestamp'})
+                                        activeComparison: prop === 'time' && 'active',
+                                        optionFunc: () => changeActiveSort({tempProp: 'time'})
                                     }
                                 ]
                             },

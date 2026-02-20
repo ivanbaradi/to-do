@@ -1,5 +1,5 @@
 import { createContext, useState } from "react";
-import { createTimestamp } from '../utils/date'
+import { createTime, getTimestamp } from '../utils/date'
 
 export const ListContext = createContext()
 
@@ -15,23 +15,27 @@ export function ListProvider({children}){
      */
     function addItem(title, desc){
 
+        const time = createTime()
+
         setList(prevList => [
             ...prevList, 
             {
-                id: idCounter,
-                title, 
-                desc, 
-                timestamp: createTimestamp(),
-                checked: false
+                id: idCounter, // item's ID
+                title, // item's title
+                desc, // item's description
+                time, // time that item gets added or edited
+                timestamp: getTimestamp(time), // time's timestamp
+                checked: false // flag that determines whether the item is checked
             }
         ])
+        
         setIdCounter(idCounter+1)
     }
 
 
     /**
      * Checks item from the ToDo list by crossing its details
-     * @param {number} tempId - target index of the item to check
+     * @param {number} tempId - target ID of the item to check
      */
     function checkItem(tempId){
         setList(prev => prev.map(item => (item.id === tempId) ? {...item, checked: item.checked ? false : true} : item))
@@ -45,10 +49,14 @@ export function ListProvider({children}){
      * @param {string} desc - new description of the item
      */
     function saveItem(id, title, desc){
+
+        const time = createTime()
+
         setList(prevList => prevList.map(item => (item.id === id) ? 
             {...item, 
                 title, 
-                timestamp: createTimestamp(),
+                time,
+                timestamp: getTimestamp(time),
                 desc, 
             } : item )
         )
@@ -57,7 +65,7 @@ export function ListProvider({children}){
 
     /**
      * Deletes item from the ToDo list
-     * @param {number} tempId - target index of the item to delete
+     * @param {number} tempId - target ID of the item to delete
      */
     function deleteItem(tempId){
         setList(list.filter(({id}) => id !== tempId))
@@ -80,10 +88,15 @@ export function ListProvider({children}){
 
         if(prop === null && descending === null)
             return 
-
+        
         setList(list.toSorted((a, b) => {
-            const options = {sensivity: 'base', numeric: true}
-            return descending ? b[prop].localeCompare(a[prop], undefined, options) : a[prop].localeCompare(b[prop], undefined, options)
+
+            if(typeof(a[prop]) === 'string'){
+                const options = {sensivity: 'base', numeric: true}
+                return descending ? b[prop].localeCompare(a[prop], undefined, options) : a[prop].localeCompare(b[prop], undefined, options)
+            }
+
+            return descending ? b[prop] - a[prop] : a[prop] - b[prop]
         }))
     }
 
