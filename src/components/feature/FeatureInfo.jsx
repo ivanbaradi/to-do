@@ -1,10 +1,10 @@
-import { useMediaQuery } from "react-responsive"
+import { useMobile, useTablet } from "../../hooks/media"
 
 export default function FeatureInfo({iconName, subTitle, desc, ...props}){
 
     // adjusts CSS for mobile and tablet users
-    const onMobile = useMediaQuery({maxWidth: 767})
-    const onTablet = useMediaQuery({maxWidth: 991})
+    const onMobile = useMobile()
+    const onTablet = useTablet()
 
     // sub-titles that discuss features
     const _subTitle = {

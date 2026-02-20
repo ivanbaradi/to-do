@@ -3,7 +3,7 @@ import FormButton from '../components/form/FormButton'
 import inputCharLimits from '../data/inputCharLimits.json'
 import { useState, useContext } from "react"
 import { ListContext } from '../context/ListContext'
-import { setInput } from '../utils/inputs'
+import { setInput, clearInput } from '../utils/inputs'
 
 export default function AddItem(){
 
@@ -40,8 +40,8 @@ export default function AddItem(){
      */
     function clearForm(){
         setEmptyTitle(null)
-        setTitle('')
-        setDesc('')
+        clearInput(setTitle)
+        clearInput(setDesc)
     }
 
     return (

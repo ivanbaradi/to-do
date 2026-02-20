@@ -6,7 +6,7 @@ import { ListContext } from '../context/ListContext'
 
 export default function List(){
 
-    const { list, deleteItem, checkItem, deleteCheckedItems, setList } = useContext(ListContext)
+    const {list, deleteItem, checkItem, deleteCheckedItems, sortItems } = useContext(ListContext)
 
     // Configures active property and order for sorting items
     const [activeSort, setActiveSort] = useState({prop: null, descending: null})
@@ -46,20 +46,8 @@ export default function List(){
         setActiveFilter(prev => prev === prop ? null : prop)
     }
 
-    // Sorts items after all sorting options are configured
-    function sortItems(){
-
-        if(prop === null && descending === null)
-            return 
-
-        setList(list.toSorted((a, b) => {
-            const options = {sensivity: 'base', numeric: true}
-            return descending ? b[prop].localeCompare(a[prop], undefined, options) : a[prop].localeCompare(b[prop], undefined, options)
-        }))
-    }
-
     // Invoked after configuring sort options
-    useEffect(sortItems, [activeSort])
+    useEffect(() => sortItems(prop, descending), [activeSort])
 
     // Displays error message due to zero items in the list
     if(list.length === 0)
@@ -157,7 +145,7 @@ export default function List(){
                                     mobileMarginAdjust={i < n-1}
                                     tabletMarginAdjust={i < n-2}
                                     laptopMarginAdjust={i < n-3}
-                                    sortItems={sortItems}
+                                    activeSort={activeSort}
                                 />
                             )
                         }

@@ -1,8 +1,8 @@
-import { useMediaQuery } from "react-responsive"
+import { useMobile } from "../../hooks/media"
 
 export default function ListDropdown({header, optionGroups, ...props}){
 
-    const onMobile = useMediaQuery({maxWidth: 767})
+    const onMobile = useMobile()
 
     const subHeader = {
         fontSize: '11px',

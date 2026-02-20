@@ -1,28 +1,28 @@
 import ItemButton from "./ItemButton"
 import inputCharLimits from '../../data/inputCharLimits.json'
-import { useMediaQuery } from "react-responsive"
 import { useState, useEffect, useContext } from "react"
 import { ListContext } from "../../context/ListContext"
 import { setInput } from '../../utils/inputs'
-
+import { useMobile, useTablet, useLaptop } from "../../hooks/media"
 
 export default function Item({id, title, desc, timestamp, checked, ...props}){
 
-    const {saveItem} = useContext(ListContext)
+    const {saveItem, sortItems} = useContext(ListContext)
 
     // Character limits for inputs
     const {titleCharLimit, descCharLimit} = inputCharLimits
 
     // Responsive media
-    const onMobile = useMediaQuery({maxWidth: 767})
-    const onTablet = useMediaQuery({maxWidth: 991})
-    const onLaptop = useMediaQuery({maxWidth: 1199})
+    const onMobile = useMobile()
+    const onTablet = useTablet()
+    const onLaptop = useLaptop()
 
     // Edit mode
     const [onEdit, setOnEdit] = useState(false)
     const [newTitle, setNewTitle] = useState(title)
     const [newDesc, setNewDesc] = useState(desc)
     const [finalTitle, setFinalTitle] = useState(title) // used to invoke function that sort items
+    const [finalDesc, setFinalDesc] = useState(desc)
 
     // Configues edit mode
     function configureOnEdit(){
@@ -33,13 +33,17 @@ export default function Item({id, title, desc, timestamp, checked, ...props}){
         if(onEdit && (newTitle !== title || newDesc !== desc)){
             saveItem(id, newTitle, newDesc)
             setFinalTitle(newTitle)
+            setFinalDesc(newDesc)
         }
 
         setOnEdit(onEdit ? false : true)
     }
 
     // Invoked after editing an item
-    useEffect(props.sortItems, [finalTitle])
+    useEffect(() => {
+        const {prop, descending} = props.activeSort
+        sortItems(prop, descending)
+    }, [finalTitle, finalDesc])
 
     const timeStamp = {
         fontSize: '12px', 

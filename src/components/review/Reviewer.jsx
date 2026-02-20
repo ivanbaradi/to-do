@@ -1,10 +1,10 @@
-import { useMediaQuery } from "react-responsive"
+import { useMobile, useTablet } from "../../hooks/media"
 
 export default function Reviewer({name, caption, text, ...props}){
 
     // adjusts CSS for mobile and tablet users
-    const onMobile = useMediaQuery({maxWidth: 767})
-    const onTablet = useMediaQuery({maxWidth: 991})
+    const onMobile = useMobile()
+    const onTablet = useTablet()
 
     // reviewer borders
     const customBorder = '3px ridge black'

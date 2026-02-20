@@ -1,8 +1,8 @@
-import { useMediaQuery } from "react-responsive"
+import { useMobile } from "../../hooks/media"
 
 export default function ListButton({buttonColor, text, func, ...props}){
 
-    const onMobile = useMediaQuery({maxWidth: 767})
+    const onMobile = useMobile()
 
     const mobileQuery = {
         textAlign: 'left',
