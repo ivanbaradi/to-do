@@ -1,7 +1,7 @@
 import Item from '../components/item/Item'
 import ListButton from '../components/list/ListButton'
 import ListDropdown from '../components/list/ListDropdown'
-import { useState, useEffect, useContext } from 'react'
+import { useState, useContext } from 'react'
 import { ListContext } from '../context/ListContext'
 
 export default function List(){
