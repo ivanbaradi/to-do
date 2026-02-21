@@ -25,8 +25,8 @@ export default function List(){
 
     const {checkedFilter, dateActionFilter} = activeFilters
     
-    // List that gets displayed on the web page based on filters
-    const listUI = filterItems(activeFilters)
+    // List that gets displayed on the web page based on filter and sort options
+    const listUI = sortItems(filterItems(list, activeFilters), activePropSort, descending)
     const n = listUI.length
 
     /**
@@ -63,9 +63,6 @@ export default function List(){
                 return {...prev, dateActionFilter: dateActionFilter === tempDateActionFilter ? null : tempDateActionFilter}
         })
     }
-
-    // Invoked after configuring sort options
-    useEffect(() => sortItems(activePropSort, descending), [activeSort])
 
     // Displays error message due to zero items in the list
     if(list.length === 0)

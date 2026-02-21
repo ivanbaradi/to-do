@@ -80,16 +80,14 @@ export function ListProvider({children}){
     }
 
     /**
-     * Sorts items from the list based on property and order
+     * Gets sorted list configured by specific property and order
+     * @param {object[]} tempList - list that will be sorted
      * @param {string} prop - item's property, which determines how items are sorted by
      * @param {boolean} descending - flag whether order is in descending order or not
+     * @returns {object[]} sorted list configured by specific property and order
      */
-    function sortItems(prop, descending){
-
-        if(prop === null && descending === null)
-            return 
-        
-        setList(list.toSorted((a, b) => {
+    function sortItems(tempList, prop, descending){
+        return tempList?.toSorted((a, b) => {
 
             if(typeof(a[prop]) === 'string'){
                 const options = {sensivity: 'base', numeric: true}
@@ -97,28 +95,27 @@ export function ListProvider({children}){
             }
 
             return descending ? b[prop] - a[prop] : a[prop] - b[prop]
-        }))
+        })
     }
 
 
     /**
-     * Filters items with multiple filter options
+     * Gets filtered list configured by multiple filter options
+     * @param {object[]} tempList - list that will be filtered
      * @param {object} filters - list of options to filter items
      * @returns {object[]} filtered list configured by filter options
      */
-    function filterItems(filters){
-
-        let filteredList = list
+    function filterItems(tempList, filters){
 
         for(const [key, value] of Object.entries(filters)){
 
             if(key === 'checkedFilter' && value !== null)
-                filteredList = filteredList.filter(({checked}) => value === 'checked' ? checked : !checked)
+                tempList = tempList.filter(({checked}) => value === 'checked' ? checked : !checked)
             else if(key === 'dateActionFilter' && value !== null) 
-                filteredList = filteredList.filter(({timestamp}) => value === 'date edited' ? timestamp.includes('(Edited)') : !timestamp.includes('(Edited)'))
+                tempList = tempList.filter(({timestamp}) => value === 'date edited' ? timestamp.includes('(Edited)') : !timestamp.includes('(Edited)'))
         }
 
-        return filteredList
+        return tempList
     }
 
     const states = {list, idCounter}
