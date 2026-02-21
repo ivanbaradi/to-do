@@ -11,11 +11,11 @@ export default function List(){
 
     // Configures active property and order for sorting items
     const [activeSort, setActiveSort] = useState({
-        prop: null, 
+        activePropSort: null, 
         descending: null}
     )
 
-    const {prop, descending} = activeSort
+    const {activePropSort, descending} = activeSort
     
     // Configures active filters for filtering items
     const [activeFilters, setActiveFilters] = useState({
@@ -39,7 +39,7 @@ export default function List(){
             
             // Changes active sort based on updated property
             if(tempProp !== undefined){
-                const newActiveSort = {...prev, prop: tempProp} 
+                const newActiveSort = {...prev, activePropSort: tempProp} 
                 return descending !== null ? newActiveSort : {...newActiveSort, descending: false} // ascending order is defaulted
             } 
 
@@ -65,7 +65,7 @@ export default function List(){
     }
 
     // Invoked after configuring sort options
-    useEffect(() => sortItems(prop, descending), [activeSort])
+    useEffect(() => sortItems(activePropSort, descending), [activeSort])
 
     // Displays error message due to zero items in the list
     if(list.length === 0)
@@ -79,16 +79,16 @@ export default function List(){
                         header='Sort'
                         optionGroups={[
                             {
-                                subheader: 'Type', // subheader is optional (no need to include this prop)
+                                subheader: 'Type', // subheader is optional (no need to include this property)
                                 options: [ // list of options per each option group
                                     {
                                         option: 'Title', // name of the option
-                                        activeComparison: prop === 'title' && 'active', // comparison for highlight active option
+                                        activeComparison: activePropSort === 'title' && 'active', // comparison for highlight active option
                                         optionFunc: () => changeActiveSort({tempProp: 'title'}) // function associated with option
                                     },
                                     {
                                         option: 'Date',
-                                        activeComparison: prop === 'time' && 'active',
+                                        activeComparison: activePropSort === 'time' && 'active',
                                         optionFunc: () => changeActiveSort({tempProp: 'time'})
                                     }
                                 ]
