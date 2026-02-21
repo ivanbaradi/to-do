@@ -6,22 +6,32 @@ import { ListContext } from '../context/ListContext'
 
 export default function List(){
 
-    const {list, deleteItem, checkItem, deleteCheckedItems, sortItems, filterItems } = useContext(ListContext)
+    // Imports some assets from ListContext
+    const {list, deleteItem, checkItem, deleteCheckedItems, sortItems, filterItems} = useContext(ListContext)
 
     // Configures active property and order for sorting items
-    const [activeSort, setActiveSort] = useState({prop: null, descending: null})
+    const [activeSort, setActiveSort] = useState({
+        prop: null, 
+        descending: null}
+    )
+
     const {prop, descending} = activeSort
-    // Configures active filter for filtering items
-    const [activeFilter, setActiveFilter] = useState(null)
-    // Filters items after filter option is configured (Check option only)
-    const filteredList = filterItems(activeFilter)
-    // List that gets displayed on the web page 
-    const listUI = (activeFilter !== null) ? filteredList : list
+    
+    // Configures active filters for filtering items
+    const [activeFilters, setActiveFilters] = useState({
+        checkedFilter: null, 
+        dateActionFilter: null}
+    )
+
+    const {checkedFilter, dateActionFilter} = activeFilters
+    
+    // List that gets displayed on the web page based on filters
+    const listUI = filterItems(activeFilters)
     const n = listUI.length
 
     /**
      * Changes active sort based on specific property and order
-     * @param {object} tempProps  temporary object with props to configure a sorting list
+     * @param {object} tempProps - temporary object with props to configure a sorting list
      */
     function changeActiveSort(tempProps){
         const {tempProp, tempDescending} = tempProps
@@ -40,10 +50,18 @@ export default function List(){
 
     /**
      * Changes active filter based on specific property
-     * @param {boolean} prop prop of items to only include
+     * @param {object} tempFilters - temporary object of filter options
      */
-    function changeActiveFilter(prop){
-        setActiveFilter(prev => prev === prop ? null : prop)
+    function changeActiveFilter(tempFilters){
+
+        const {tempCheckedFilter, tempDateActionFilter} = tempFilters
+
+        setActiveFilters(prev => {
+            if(tempCheckedFilter !== undefined)
+                return {...prev, checkedFilter: checkedFilter === tempCheckedFilter ? null : tempCheckedFilter}
+            else
+                return {...prev, dateActionFilter: dateActionFilter === tempDateActionFilter ? null : tempDateActionFilter}
+        })
     }
 
     // Invoked after configuring sort options
@@ -98,16 +116,32 @@ export default function List(){
                         header='Filter'
                         optionGroups={[
                             {
+                                subheader: 'Checked',
                                 options: [
                                     {
                                         option: 'Checked',
-                                        activeComparison: activeFilter === 'checked' && 'active',
-                                        optionFunc: () => changeActiveFilter('checked')
+                                        activeComparison: checkedFilter === 'checked' && 'active',
+                                        optionFunc: () => changeActiveFilter({tempCheckedFilter: 'checked'})
                                     },
                                     {
                                         option: 'Unchecked',
-                                        activeComparison: activeFilter === 'unchecked' && 'active',
-                                        optionFunc: () => changeActiveFilter('unchecked')
+                                        activeComparison: checkedFilter === 'unchecked' && 'active',
+                                        optionFunc: () => changeActiveFilter({tempCheckedFilter: 'unchecked'})
+                                    }
+                                ]
+                            },
+                            {
+                                subheader: 'Date Action',
+                                options: [
+                                    {
+                                        option: 'Date Added',
+                                        activeComparison: dateActionFilter === 'date added' && 'active',
+                                        optionFunc: () => changeActiveFilter({tempDateActionFilter: 'date added'})
+                                    },
+                                    {
+                                        option: 'Date Edited',
+                                        activeComparison: dateActionFilter === 'date edited' && 'active',
+                                        optionFunc: () => changeActiveFilter({tempDateActionFilter: 'date edited'})
                                     }
                                 ]
                             }

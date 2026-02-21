@@ -102,12 +102,23 @@ export function ListProvider({children}){
 
 
     /**
-     * Filters items (checked option only)
-     * @param {string} filter - string that filters items
-     * @returns {object[]} filtered list
+     * Filters items with multiple filter options
+     * @param {object} filters - list of options to filter items
+     * @returns {object[]} filtered list configured by filter options
      */
-    function filterItems(filter){
-        return list.filter(({checked}) => filter === 'checked' ? checked : !checked)
+    function filterItems(filters){
+
+        let filteredList = list
+
+        for(const [key, value] of Object.entries(filters)){
+
+            if(key === 'checkedFilter' && value !== null)
+                filteredList = filteredList.filter(({checked}) => value === 'checked' ? checked : !checked)
+            else if(key === 'dateActionFilter' && value !== null) 
+                filteredList = filteredList.filter(({timestamp}) => value === 'date edited' ? timestamp.includes('(Edited)') : !timestamp.includes('(Edited)'))
+        }
+
+        return filteredList
     }
 
     const states = {list, idCounter}
