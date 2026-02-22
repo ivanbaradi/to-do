@@ -12,16 +12,16 @@ export default function List(){
     // Configures active property and order for sorting items
     const [activeSort, setActiveSort] = useState({
         activePropSort: null, 
-        descending: null}
-    )
+        descending: null
+    })
 
     const {activePropSort, descending} = activeSort
     
     // Configures active filters for filtering items
     const [activeFilters, setActiveFilters] = useState({
         checkedFilter: null, 
-        dateActionFilter: null}
-    )
+        dateActionFilter: null
+    })
 
     const {checkedFilter, dateActionFilter} = activeFilters
     
@@ -30,37 +30,32 @@ export default function List(){
     const n = listUI.length
 
     /**
-     * Changes active sort based on specific property and order
-     * @param {object} tempProps - temporary object with props to configure a sorting list
+     * Configures an option to become active
+     * @param {object[]} options - list of options from dropdown menu
+     * @param {string} option - option to make it active (key)
+     * @param {any} newValue - option's new value to make it active (value)
+     * @param {React.Dispatch<React.SetStateAction<object>>} setActiveOption - option's setState 
      */
-    function changeActiveSort(tempProps){
-        const {tempProp, tempDescending} = tempProps
-        setActiveSort(prev => {
+    function changeActiveOption(options, option, newValue, setActiveOption){
+        
+        setActiveOption(prev => {
+
+            const prevValue = options[option] // previous value of a specific option
+            const newOptions = {...prev, [option]: newValue === prevValue ? null : newValue} // configuring option with new value
+
+            // Special case for sorting options
+            if(options === activeSort){
+
+                // CASE 1: None of the sorting options are active => ascending order will be active by default
+                if(options.descending === null)
+                    return {...newOptions, descending: false}
+
+                // CASE 2: Active sorting option is clicked => all sorting options will be inactive
+                if(prevValue === newValue)
+                    return Object.fromEntries(Object.keys(options).map(key => [key, null]))
+            }
             
-            // Changes active sort based on updated property
-            if(tempProp !== undefined){
-                const newActiveSort = {...prev, activePropSort: tempProp} 
-                return descending !== null ? newActiveSort : {...newActiveSort, descending: false} // ascending order is defaulted
-            } 
-
-            // Changes active sort based on updated sorting
-            return {...prev, descending: tempDescending}
-        })
-    }
-
-    /**
-     * Changes active filter based on specific property
-     * @param {object} tempFilters - temporary object of filter options
-     */
-    function changeActiveFilter(tempFilters){
-
-        const {tempCheckedFilter, tempDateActionFilter} = tempFilters
-
-        setActiveFilters(prev => {
-            if(tempCheckedFilter !== undefined)
-                return {...prev, checkedFilter: checkedFilter === tempCheckedFilter ? null : tempCheckedFilter}
-            else
-                return {...prev, dateActionFilter: dateActionFilter === tempDateActionFilter ? null : tempDateActionFilter}
+            return newOptions
         })
     }
 
@@ -81,12 +76,12 @@ export default function List(){
                                     {
                                         option: 'Title', // name of the option
                                         activeComparison: activePropSort === 'title' && 'active', // comparison for highlight active option
-                                        optionFunc: () => changeActiveSort({tempProp: 'title'}) // function associated with option
+                                        optionFunc: () => changeActiveOption(activeSort, 'activePropSort', 'title', setActiveSort) // function associated with option
                                     },
                                     {
                                         option: 'Date',
                                         activeComparison: activePropSort === 'time' && 'active',
-                                        optionFunc: () => changeActiveSort({tempProp: 'time'})
+                                        optionFunc: () => changeActiveOption(activeSort, 'activePropSort', 'time', setActiveSort)
                                     }
                                 ]
                             },
@@ -96,12 +91,12 @@ export default function List(){
                                     {
                                         option: 'Ascending',
                                         activeComparison: descending === null ? 'disabled' : !descending && 'active',
-                                        optionFunc: () => changeActiveSort({tempDescending: false})
+                                        optionFunc: () => changeActiveOption(activeSort, 'descending', false, setActiveSort)
                                     },
                                     {
                                         option: 'Descending',    
                                         activeComparison: descending === null ? 'disabled' : descending && 'active',
-                                        optionFunc: () => changeActiveSort({tempDescending: true})
+                                        optionFunc: () => changeActiveOption(activeSort, 'descending', true, setActiveSort)
                                     }   
                                 ]
                             }
@@ -118,12 +113,12 @@ export default function List(){
                                     {
                                         option: 'Checked',
                                         activeComparison: checkedFilter === 'checked' && 'active',
-                                        optionFunc: () => changeActiveFilter({tempCheckedFilter: 'checked'})
+                                        optionFunc: () => changeActiveOption(activeFilters, 'checkedFilter', 'checked', setActiveFilters)
                                     },
                                     {
                                         option: 'Unchecked',
                                         activeComparison: checkedFilter === 'unchecked' && 'active',
-                                        optionFunc: () => changeActiveFilter({tempCheckedFilter: 'unchecked'})
+                                        optionFunc: () => changeActiveOption(activeFilters, 'checkedFilter', 'unchecked', setActiveFilters)
                                     }
                                 ]
                             },
@@ -133,12 +128,12 @@ export default function List(){
                                     {
                                         option: 'Date Added',
                                         activeComparison: dateActionFilter === 'date added' && 'active',
-                                        optionFunc: () => changeActiveFilter({tempDateActionFilter: 'date added'})
+                                        optionFunc: () => changeActiveOption(activeFilters, 'dateActionFilter', 'date added', setActiveFilters)
                                     },
                                     {
                                         option: 'Date Edited',
                                         activeComparison: dateActionFilter === 'date edited' && 'active',
-                                        optionFunc: () => changeActiveFilter({tempDateActionFilter: 'date edited'})
+                                        optionFunc: () => changeActiveOption(activeFilters, 'dateActionFilter', 'date edited', setActiveFilters)
                                     }
                                 ]
                             }
@@ -176,7 +171,6 @@ export default function List(){
                                     mobileMarginAdjust={i < n-1}
                                     tabletMarginAdjust={i < n-2}
                                     laptopMarginAdjust={i < n-3}
-                                    activeSort={activeSort}
                                 />
                             )
                         }

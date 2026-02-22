@@ -108,11 +108,12 @@ export function ListProvider({children}){
     function filterItems(tempList, filters){
 
         for(const [key, value] of Object.entries(filters)){
-
-            if(key === 'checkedFilter' && value !== null)
-                tempList = tempList.filter(({checked}) => value === 'checked' ? checked : !checked)
-            else if(key === 'dateActionFilter' && value !== null) 
-                tempList = tempList.filter(({timestamp}) => value === 'date edited' ? timestamp.includes('(Edited)') : !timestamp.includes('(Edited)'))
+            if(value !== null){
+                if(key === 'checkedFilter')
+                    tempList = tempList.filter(({checked}) => value === 'checked' ? checked : !checked)
+                else if(key === 'dateActionFilter') 
+                    tempList = tempList.filter(({timestamp}) => value === 'date edited' ? timestamp.includes('(Edited)') : !timestamp.includes('(Edited)'))
+            }
         }
 
         return tempList
