@@ -5,7 +5,7 @@ export default function ListDropdown({header, optionGroups, ...props}){
     const onMobile = useMobile()
 
     const subHeader = {
-        fontSize: '11px',
+        fontSize: '12px',
         color: 'lightgray'
     }
 
@@ -29,8 +29,9 @@ export default function ListDropdown({header, optionGroups, ...props}){
                     {optionGroups.map(({subheader, options}, i) => {
                         return (
                             <div key={i}>
-                                {subheader !== undefined && <li><h6 className='dropdown-header' style={subHeader}>{subheader}</h6></li>}                                
+                                {subheader !== undefined && <li><h6 className='dropdown-header' style={subHeader}>{subheader}</h6></li>}   
                                 {options.map(({option, activeComparison, optionFunc}, j) => <li key={j}><a style={optionCSS} className={`${activeComparison} dropdown-item`} onClick={optionFunc}>{option}</a></li>)}
+                                {i < optionGroups.length-1 && <div className="dropdown-divider"></div>}                          
                             </div>
                         )
                     })}
