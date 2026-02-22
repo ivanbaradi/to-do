@@ -3,7 +3,7 @@ import FormButton from '../components/form/FormButton'
 import inputCharLimits from '../data/inputCharLimits.json'
 import { useState, useContext } from "react"
 import { ListContext } from '../context/ListContext'
-import { setInput, clearInput } from '../utils/inputs'
+import { setInput, clearInput, finalizeInput } from '../utils/inputs'
 
 export default function AddItem(){
 
@@ -26,12 +26,15 @@ export default function AddItem(){
      */
     function submitForm(){
 
-        if(title.length === 0){
+        const finalTitle = finalizeInput(title)
+        const finalDesc = finalizeInput(desc)
+
+        if(finalTitle.length === 0){
             setEmptyTitle(true)
             return
         }
 
-        addItem(title, desc)
+        addItem(finalTitle, finalDesc)
         clearForm()
     }
 

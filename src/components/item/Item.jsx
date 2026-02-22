@@ -1,13 +1,13 @@
 import ItemButton from "./ItemButton"
 import inputCharLimits from '../../data/inputCharLimits.json'
-import { useState, useEffect, useContext } from "react"
+import { useState, useContext } from "react"
 import { ListContext } from "../../context/ListContext"
-import { setInput } from '../../utils/inputs'
+import { setInput, finalizeInput } from '../../utils/inputs'
 import { useMobile, useTablet, useLaptop } from "../../hooks/mediaQuery"
 
 export default function Item({id, title, desc, timestamp, checked, ...props}){
 
-    const {saveItem, sortItems} = useContext(ListContext)
+    const {saveItem} = useContext(ListContext)
 
     // Character limits for inputs
     const {titleCharLimit, descCharLimit} = inputCharLimits
@@ -21,29 +21,27 @@ export default function Item({id, title, desc, timestamp, checked, ...props}){
     const [onEdit, setOnEdit] = useState(false)
     const [newTitle, setNewTitle] = useState(title)
     const [newDesc, setNewDesc] = useState(desc)
-    const [finalTitle, setFinalTitle] = useState(title) // used to invoke function that sort items
-    const [finalDesc, setFinalDesc] = useState(desc)
 
-    // Configues edit mode
+    /**
+     * Configures edit mode
+     */
     function configureOnEdit(){
 
-        if(newTitle.length === 0)
+        const finalTitle = finalizeInput(newTitle)
+        const finalDesc = finalizeInput(newDesc)
+
+        if(finalTitle.length === 0)
             return
 
-        if(onEdit && (newTitle !== title || newDesc !== desc)){
-            saveItem(id, newTitle, newDesc)
-            setFinalTitle(newTitle)
-            setFinalDesc(newDesc)
-        }
+        if(onEdit && (finalTitle !== title || finalDesc !== desc))
+            saveItem(id, finalTitle, finalDesc)
+
+        // Must finalize title and description the next time edit mode is on
+        setNewTitle(finalTitle)
+        setNewDesc(finalDesc)
 
         setOnEdit(onEdit ? false : true)
     }
-
-    // Invoked after editing an item
-    useEffect(() => {
-        const {prop, descending} = props.activeSort
-        sortItems(prop, descending)
-    }, [finalTitle, finalDesc])
 
     const timeStamp = {
         fontSize: '12px', 
