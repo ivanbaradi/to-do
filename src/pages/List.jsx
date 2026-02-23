@@ -11,7 +11,7 @@ export default function List(){
 
     // Configures active property and order for sorting items
     const [activeSort, setActiveSort] = useState({
-        activePropSort: null, 
+        activePropSort: null, // null = neither option from option group is active
         descending: null
     })
 
@@ -20,10 +20,11 @@ export default function List(){
     // Configures active filters for filtering items
     const [activeFilters, setActiveFilters] = useState({
         checkedFilter: null, 
-        dateActionFilter: null
+        dateActionFilter: null,
+        descFilter: null
     })
 
-    const {checkedFilter, dateActionFilter} = activeFilters
+    const {checkedFilter, dateActionFilter, descFilter} = activeFilters
     
     // List that gets displayed on the web page based on filter and sort options
     const listUI = sortItems(filterItems(list, activeFilters), activePropSort, descending)
@@ -71,12 +72,12 @@ export default function List(){
                         header='Sort'
                         optionGroups={[
                             {
-                                subheader: 'Type', // subheader is optional (no need to include this property)
+                                subheader: 'Type', // OPTIONAL: option's subheader
                                 options: [ // list of options per each option group
                                     {
                                         option: 'Title', // name of the option
-                                        activeComparison: activePropSort === 'title' && 'active', // comparison for highlight active option
-                                        optionFunc: () => changeActiveOption(activeSort, 'activePropSort', 'title', setActiveSort) // function associated with option
+                                        activeComparison: activePropSort === 'title' && 'active', // comparison for highlight active option (NOTE: In sort options, option's value must be set with item's property)
+                                        optionFunc: () => changeActiveOption(activeSort, 'activePropSort', 'title', setActiveSort) // function to set active option
                                     },
                                     {
                                         option: 'Date',
@@ -136,6 +137,21 @@ export default function List(){
                                         optionFunc: () => changeActiveOption(activeFilters, 'dateActionFilter', 'date edited', setActiveFilters)
                                     }
                                 ]
+                            },
+                            {
+                                subheader: 'Description',
+                                options: [
+                                    {
+                                        option: 'With Description',
+                                        activeComparison: descFilter === 'with desc' && 'active',
+                                        optionFunc: () => changeActiveOption(activeFilters, 'descFilter', 'with desc', setActiveFilters)
+                                    },
+                                    {
+                                        option: 'Without Description',
+                                        activeComparison: descFilter === 'without desc' && 'active',
+                                        optionFunc: () => changeActiveOption(activeFilters, 'descFilter', 'without desc', setActiveFilters)
+                                    }
+                                ]                               
                             }
                         ]}   
                         mobileMarginAdjust={true}                 

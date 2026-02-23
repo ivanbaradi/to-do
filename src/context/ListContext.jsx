@@ -107,12 +107,24 @@ export function ListProvider({children}){
      */
     function filterItems(tempList, filters){
 
+        // Applies all filters to temporary list
         for(const [key, value] of Object.entries(filters)){
-            if(value !== null){
-                if(key === 'checkedFilter')
+            
+            if(value === null)
+                continue
+            
+            switch(key){
+                case 'checkedFilter':
                     tempList = tempList.filter(({checked}) => value === 'checked' ? checked : !checked)
-                else if(key === 'dateActionFilter') 
+                    break
+                case 'dateActionFilter':
                     tempList = tempList.filter(({timestamp}) => value === 'date edited' ? timestamp.includes('(Edited)') : !timestamp.includes('(Edited)'))
+                    break
+                case 'descFilter':
+                    tempList = tempList.filter(({desc}) => value === 'with desc' ? desc.length > 0 : desc.length === 0)
+                    break
+                default:
+                    alert(`Invalid key: '${key}'`)
             }
         }
 
