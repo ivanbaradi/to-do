@@ -32,31 +32,30 @@ export default function List(){
 
     /**
      * Configures an option to become active
-     * @param {object[]} options - list of options from dropdown menu
      * @param {string} option - option to make it active (key)
-     * @param {any} newValue - option's new value to make it active (value)
+     * @param {string | boolean} newValue - option's new value to make it active (value)
      * @param {React.Dispatch<React.SetStateAction<object>>} setActiveOption - option's setState 
      */
-    function changeActiveOption(options, option, newValue, setActiveOption){
+    function changeActiveOption(option, newValue, setActiveOption){
         
         setActiveOption(prev => {
 
-            const prevValue = options[option] // previous value of a specific option
-            const newOptions = {...prev, [option]: newValue === prevValue ? null : newValue} // configuring option with new value
+            const prevValue = prev[option] // previous value of a specific option
+            const updatedOptions = {...prev, [option]: newValue === prevValue ? null : newValue} // configuring option with new value
 
             // Special case for sorting options
-            if(options === activeSort){
+            if(prev === activeSort){
 
                 // CASE 1: None of the sorting options are active => ascending order will be active by default
-                if(options.descending === null)
-                    return {...newOptions, descending: false}
+                if(prev.descending === null)
+                    return {...updatedOptions, descending: false}
 
                 // CASE 2: Active sorting option is clicked => all sorting options will be inactive
                 if(prevValue === newValue)
-                    return Object.fromEntries(Object.keys(options).map(key => [key, null]))
+                    return Object.fromEntries(Object.keys(prev).map(key => [key, null]))
             }
             
-            return newOptions
+            return updatedOptions
         })
     }
 
@@ -77,12 +76,12 @@ export default function List(){
                                     {
                                         option: 'Title', // name of the option
                                         activeComparison: activePropSort === 'title' && 'active', // comparison for highlight active option (NOTE: In sort options, option's value must be set with item's property)
-                                        optionFunc: () => changeActiveOption(activeSort, 'activePropSort', 'title', setActiveSort) // function to set active option
+                                        optionFunc: () => changeActiveOption('activePropSort', 'title', setActiveSort) // function to set active option
                                     },
                                     {
                                         option: 'Date',
                                         activeComparison: activePropSort === 'time' && 'active',
-                                        optionFunc: () => changeActiveOption(activeSort, 'activePropSort', 'time', setActiveSort)
+                                        optionFunc: () => changeActiveOption('activePropSort', 'time', setActiveSort)
                                     }
                                 ]
                             },
@@ -92,12 +91,12 @@ export default function List(){
                                     {
                                         option: 'Ascending',
                                         activeComparison: descending === null ? 'disabled' : !descending && 'active',
-                                        optionFunc: () => changeActiveOption(activeSort, 'descending', false, setActiveSort)
+                                        optionFunc: () => changeActiveOption('descending', false, setActiveSort)
                                     },
                                     {
                                         option: 'Descending',    
                                         activeComparison: descending === null ? 'disabled' : descending && 'active',
-                                        optionFunc: () => changeActiveOption(activeSort, 'descending', true, setActiveSort)
+                                        optionFunc: () => changeActiveOption('descending', true, setActiveSort)
                                     }   
                                 ]
                             }
@@ -114,12 +113,12 @@ export default function List(){
                                     {
                                         option: 'Checked',
                                         activeComparison: checkedFilter === 'checked' && 'active',
-                                        optionFunc: () => changeActiveOption(activeFilters, 'checkedFilter', 'checked', setActiveFilters)
+                                        optionFunc: () => changeActiveOption('checkedFilter', 'checked', setActiveFilters)
                                     },
                                     {
                                         option: 'Unchecked',
                                         activeComparison: checkedFilter === 'unchecked' && 'active',
-                                        optionFunc: () => changeActiveOption(activeFilters, 'checkedFilter', 'unchecked', setActiveFilters)
+                                        optionFunc: () => changeActiveOption('checkedFilter', 'unchecked', setActiveFilters)
                                     }
                                 ]
                             },
@@ -129,12 +128,12 @@ export default function List(){
                                     {
                                         option: 'Date Added',
                                         activeComparison: dateActionFilter === 'date added' && 'active',
-                                        optionFunc: () => changeActiveOption(activeFilters, 'dateActionFilter', 'date added', setActiveFilters)
+                                        optionFunc: () => changeActiveOption('dateActionFilter', 'date added', setActiveFilters)
                                     },
                                     {
                                         option: 'Date Edited',
                                         activeComparison: dateActionFilter === 'date edited' && 'active',
-                                        optionFunc: () => changeActiveOption(activeFilters, 'dateActionFilter', 'date edited', setActiveFilters)
+                                        optionFunc: () => changeActiveOption('dateActionFilter', 'date edited', setActiveFilters)
                                     }
                                 ]
                             },
@@ -144,12 +143,12 @@ export default function List(){
                                     {
                                         option: 'With Description',
                                         activeComparison: descFilter === 'with desc' && 'active',
-                                        optionFunc: () => changeActiveOption(activeFilters, 'descFilter', 'with desc', setActiveFilters)
+                                        optionFunc: () => changeActiveOption('descFilter', 'with desc', setActiveFilters)
                                     },
                                     {
                                         option: 'Without Description',
                                         activeComparison: descFilter === 'without desc' && 'active',
-                                        optionFunc: () => changeActiveOption(activeFilters, 'descFilter', 'without desc', setActiveFilters)
+                                        optionFunc: () => changeActiveOption('descFilter', 'without desc', setActiveFilters)
                                     }
                                 ]                               
                             }
