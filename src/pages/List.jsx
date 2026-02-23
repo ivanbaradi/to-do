@@ -164,7 +164,6 @@ export default function List(){
                     />
                 </div>
             </div>
-            <div>
             {
                 (listUI.length === 0) 
                 ?
@@ -192,7 +191,6 @@ export default function List(){
                     </div>
                 </div>
             }
-            </div> 
         </main>
     ) 
 }

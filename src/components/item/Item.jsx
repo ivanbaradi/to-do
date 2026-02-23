@@ -64,14 +64,14 @@ export default function Item({id, title, desc, timestamp, checked, ...props}){
                 <div className="card-body" style={{textAlign: 'left'}}>
                     
                     {onEdit ?
-                        <input className="card-title" value={newTitle} onChange={event => setInput(event, titleCharLimit, setNewTitle)}/> : 
+                        <input name="title" className="card-title" style={{width: '100%'}} value={newTitle} onChange={event => setInput(event, titleCharLimit, setNewTitle)}/> : 
                         <h5 className="card-title" style={crossItem}>{newTitle}</h5>
                     } 
 
                     <h6 className="card-subtitle mb-2 text-body-secondary" style={{...timeStamp, ...crossItem}}>{timestamp}</h6>
 
                     {onEdit ?
-                        <textarea className="card-text" style={{fontSize: '14px'}} value={newDesc} cols="31" onChange={event => setInput(event, descCharLimit, setNewDesc)} /> :
+                        <textarea name="desc" className="card-text" style={{fontSize: '14px', width: '100%'}} value={newDesc} onChange={event => setInput(event, descCharLimit, setNewDesc)} /> :
                         <p className="card-text" style={{...{fontSize: '14px'}, ...crossItem}}>{newDesc}</p>
                     }
 
@@ -79,7 +79,7 @@ export default function Item({id, title, desc, timestamp, checked, ...props}){
                         <div className="row">
                             <ItemButton 
                                 buttonColor='btn-primary'
-                                iconName='edit'
+                                iconName={onEdit ? 'save' : 'edit'}
                                 text={onEdit ? 'Save' : 'Edit'}
                                 func={configureOnEdit}
                             />
