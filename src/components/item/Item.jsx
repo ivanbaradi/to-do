@@ -85,7 +85,7 @@ export default function Item({id, title, desc, timestamp, checked, ...props}){
                             />
                             <ItemButton 
                                 buttonColor={checked ? 'btn-secondary' : 'btn-success'}
-                                iconName='check_box'
+                                iconName={checked ? 'check_box' : 'check_box_outline_blank'}
                                 text={checked ? 'Uncheck' : 'Check'}
                                 func={props.checkItem}
                             />   

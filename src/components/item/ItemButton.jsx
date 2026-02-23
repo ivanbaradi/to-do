@@ -5,7 +5,7 @@ export default function ItemButton({buttonColor, iconName, text, func}){
         justifyContent: 'center',
         gap: '10px',
         width: '100%',
-        margin: iconName === 'check_box' && '2px 0', // middle button only
+        margin: (iconName === 'check_box' || iconName === 'check_box_outline_blank') && '2px 0', // middle button only
         borderRadius: 0
     }
 
