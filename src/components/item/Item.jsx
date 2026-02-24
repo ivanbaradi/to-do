@@ -33,7 +33,7 @@ export default function Item({id, title, desc, timestamp, checked, ...props}){
         if(finalTitle.length === 0)
             return
 
-        if(onEdit && (finalTitle !== title || finalDesc !== desc))
+        if(finalTitle !== title || finalDesc !== desc)
             saveItem(id, finalTitle, finalDesc)
 
         // Must finalize title and description the next time edit mode is on
