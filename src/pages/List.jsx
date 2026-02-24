@@ -7,7 +7,7 @@ import { ListContext } from '../context/ListContext'
 export default function List(){
 
     // Imports some assets from ListContext
-    const {list, deleteItem, checkItem, deleteCheckedItems, sortItems, filterItems} = useContext(ListContext)
+    const {list, deleteCheckedItems, sortItems, filterItems} = useContext(ListContext)
 
     // Configures active property and order for sorting items
     const [activeSort, setActiveSort] = useState({
@@ -180,8 +180,6 @@ export default function List(){
                                     desc={desc}
                                     timestamp={timestamp}
                                     checked={checked}
-                                    deleteItem={() => deleteItem(id)}
-                                    checkItem={() => checkItem(id)}
                                     mobileMarginAdjust={i < n-1}
                                     tabletMarginAdjust={i < n-2}
                                     laptopMarginAdjust={i < n-3}

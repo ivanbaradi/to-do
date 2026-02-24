@@ -7,7 +7,7 @@ import { useMobile, useTablet, useLaptop } from "../../hooks/mediaQuery"
 
 export default function Item({id, title, desc, timestamp, checked, ...props}){
 
-    const {saveItem} = useContext(ListContext)
+    const {saveItem, deleteItem, checkItem,} = useContext(ListContext)
 
     // Character limits for inputs
     const {titleCharLimit, descCharLimit} = inputCharLimits
@@ -87,13 +87,13 @@ export default function Item({id, title, desc, timestamp, checked, ...props}){
                                 buttonColor={checked ? 'btn-secondary' : 'btn-success'}
                                 iconName={checked ? 'check_box' : 'check_box_outline_blank'}
                                 text={checked ? 'Uncheck' : 'Check'}
-                                func={props.checkItem}
+                                func={() => checkItem(id)}
                             />   
                             <ItemButton 
                                 buttonColor='btn-danger'
                                 iconName='delete'
                                 text='Delete'
-                                func={props.deleteItem}
+                                func={() => deleteItem(id)}
                             />
                         </div>
                     </div>
