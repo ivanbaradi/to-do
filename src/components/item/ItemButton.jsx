@@ -1,11 +1,14 @@
+import { useMobile } from "../../hooks/mediaQuery"
+
 export default function ItemButton({buttonColor, iconName, text, func}){
+
+    const onMobile = useMobile()
 
     const button = {
         display: 'inline-flex',
         justifyContent: 'center',
         gap: '10px',
         width: '100%',
-        margin: (iconName === 'check_box' || iconName === 'check_box_outline_blank') && '2px 0', // middle button only
         borderRadius: 0
     }
 
@@ -14,11 +17,13 @@ export default function ItemButton({buttonColor, iconName, text, func}){
         marginRight: '10px'
     }
 
+    const middleButton = (iconName === 'check_box' || iconName === 'check_box_outline_blank') && !onMobile && {margin: '2px 0'} // CSS for middle button only
+
     return (
-        <div className="col-12">
-            <button className={`btn ${buttonColor}`} style={button} onClick={func}>
+        <div className="col-4 col-md-12" style={{...onMobile && {padding: '0 10px'}}}>
+            <button className={`btn ${buttonColor}`} style={{...button, ...middleButton}} onClick={func}>
                 <i className="material-symbols-outlined">{iconName}</i>
-                <span style={textCSS}>{text}</span>
+                {!onMobile && <span style={textCSS}>{text}</span>}
             </button>
         </div>
     )
