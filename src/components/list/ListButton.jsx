@@ -13,7 +13,7 @@ export default function ListButton({buttonColor, text, func, ...props}){
 
     return (
         <div className="col-md-3" style={{...featureQuery}}>
-            <div className='btn-group'>
+            <div className='btn-group' style={{...onMobile && {width: '100%'}}}>
                 <button style={{fontSize: '15px'}} className={`btn ${buttonColor}`} onClick={func}>{text}</button>
             </div>
         </div>

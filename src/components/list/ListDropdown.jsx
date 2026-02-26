@@ -23,7 +23,7 @@ export default function ListDropdown({header, optionGroups, ...props}){
 
     return (
         <div className="col-md-3" style={{...featureQuery}}>
-            <div className='btn-group' style={{width: '110px'}}>
+            <div className='btn-group' style={{...onMobile && {width: '100%'}}}>
                 <button className="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">{header}</button>
                 <ul className="dropdown-menu" data-bs-theme='dark'>
                     {optionGroups.map(({subheader, options}, i) => {
