@@ -22,7 +22,7 @@ export default function ListDropdown({header, optionGroups, ...props}){
     const featureQuery = onMobile && mobileQuery
 
     return (
-        <div className="col-md-4" style={{...featureQuery}}>
+        <div className="col-md-3" style={{...featureQuery}}>
             <div className='btn-group' style={{width: '110px'}}>
                 <button className="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">{header}</button>
                 <ul className="dropdown-menu" data-bs-theme='dark'>

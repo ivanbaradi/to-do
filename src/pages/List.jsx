@@ -59,6 +59,14 @@ export default function List(){
         })
     }
 
+    /**
+     * Clears all options (making them inactive)
+     * @param {React.Dispatch<React.SetStateAction<object>>[]} setAllOptions - list of option groups' setStates
+     */
+    function clearAllOptions(setAllOptions){
+        setAllOptions.forEach(setOption => setOption(prev => Object.fromEntries(Object.keys(prev).map(key => [key, null]))))
+    }
+
     // Displays error message due to zero items in the list
     if(list.length === 0)
         return <h2 style={{margin: '50px 0'}}>There are no items in the list.</h2>
@@ -156,10 +164,15 @@ export default function List(){
                         mobileMarginAdjust={true}                 
                     />
                     <ListButton
+                        buttonColor='btn-dark'
+                        text='Clear All Options'
+                        func={() => clearAllOptions([setActiveSort, setActiveFilters])} 
+                        mobileMarginAdjust={true}
+                    />
+                    <ListButton
                         buttonColor='btn-danger'
                         text='Delete All Checked'
-                        func={deleteCheckedItems}
-                        width='200px' 
+                        func={deleteCheckedItems} 
                         mobileMarginAdjust={false}
                     />
                 </div>

@@ -12,8 +12,8 @@ export default function ListButton({buttonColor, text, func, ...props}){
     const featureQuery = onMobile && mobileQuery
 
     return (
-        <div className="col-md-4" style={{...featureQuery}}>
-            <div className='btn-group' style={{width: props.width}}>
+        <div className="col-md-3" style={{...featureQuery}}>
+            <div className='btn-group'>
                 <button style={{fontSize: '15px'}} className={`btn ${buttonColor}`} onClick={func}>{text}</button>
             </div>
         </div>
