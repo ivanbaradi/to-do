@@ -3,7 +3,7 @@ import inputCharLimits from '../../data/inputCharLimits.json'
 import { useState, useContext } from "react"
 import { ListContext } from "../../context/ListContext"
 import { setInput, finalizeInput } from '../../utils/inputs'
-import { useMobile, useTablet, useLaptop } from "../../hooks/mediaQuery"
+import { useMobile, useTablet, useLaptop, useLargeLaptop } from "../../hooks/mediaQuery"
 
 export default function Item({id, title, desc, timestamp, checked, ...props}){
 
@@ -16,6 +16,7 @@ export default function Item({id, title, desc, timestamp, checked, ...props}){
     const onMobile = useMobile()
     const onTablet = useTablet()
     const onLaptop = useLaptop()
+    const onLargeLaptop = useLargeLaptop()
 
     // Edit mode
     const [onEdit, setOnEdit] = useState(false)
@@ -49,13 +50,11 @@ export default function Item({id, title, desc, timestamp, checked, ...props}){
     }
 
     const crossItem = {
-        textDecoration: checked ? 'line-through 5px black' : 'none'
+        textDecoration: checked && 'line-through 5px black'
     }
 
     const marginAdjust = onMobile ? props.mobileMarginAdjust && {marginBottom: '40px'} : 
-    onTablet ? props.tabletMarginAdjust && {marginBottom: '25px'} : 
-    onLaptop ? props.laptopMarginAdjust && {marginBottom: '25px'} :
-    {marginBottom: '25px'} // for way bigger devices
+    ((onTablet && props.tabletMarginAdjust) || (onLaptop && props.laptopMarginAdjust) || (onLargeLaptop && props.largeLaptopMarginAdjust)) && {marginBottom: '25px'}
 
     return (
         

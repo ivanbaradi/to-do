@@ -183,6 +183,7 @@ export default function List(){
                                     mobileMarginAdjust={i < n-1}
                                     tabletMarginAdjust={i < n-2}
                                     laptopMarginAdjust={i < n-3}
+                                    largeLaptopMarginAdjust={i < n-4}
                                 />
                             )
                         }
