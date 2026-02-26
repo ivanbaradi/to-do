@@ -165,13 +165,13 @@ export default function List(){
                     />
                     <ListButton
                         buttonColor='btn-dark'
-                        text='Clear All Options'
+                        header='Clear All Options' // button text
                         func={() => clearAllOptions([setActiveSort, setActiveFilters])} 
                         mobileMarginAdjust={true}
                     />
                     <ListButton
                         buttonColor='btn-danger'
-                        text='Delete All Checked'
+                        header='Delete All Checked'
                         func={deleteCheckedItems} 
                         mobileMarginAdjust={false}
                     />
