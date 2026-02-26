@@ -7,6 +7,7 @@ import { useMobile, useTablet, useLaptop, useLargeLaptop } from "../../hooks/med
 
 export default function Item({id, title, desc, timestamp, checked, ...props}){
 
+    // List methods
     const {saveItem, deleteItem, checkItem,} = useContext(ListContext)
 
     // Character limits for inputs
@@ -37,7 +38,7 @@ export default function Item({id, title, desc, timestamp, checked, ...props}){
         if(finalTitle !== title || finalDesc !== desc)
             saveItem(id, finalTitle, finalDesc)
 
-        // Must finalize title and description the next time edit mode is on
+        // Must invoke input setStates to keep inputs up to date
         setNewTitle(finalTitle)
         setNewDesc(finalDesc)
 
