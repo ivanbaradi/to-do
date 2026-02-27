@@ -10,6 +10,5 @@ export default function ListButton({buttonColor, header, func, ...props}){
                 <button style={{fontSize: '14px'}} className={`btn ${buttonColor}`} onClick={func}>{header}</button>
             </div>
         </div>
-
     )
 }
