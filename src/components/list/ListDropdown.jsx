@@ -14,15 +14,8 @@ export default function ListDropdown({header, optionGroups, ...props}){
         cursor: 'pointer'
     }
 
-    const mobileQuery = {
-        textAlign: 'left',
-        marginBottom: props.mobileMarginAdjust && '10px'
-    }
-
-    const featureQuery = onMobile && mobileQuery
-
     return (
-        <div className="col-md-3" style={{...featureQuery}}>
+        <div className="col" style={{...onMobile && {marginBottom: props.mobileMarginAdjust && '10px'}}}>
             <div className='btn-group' style={{...onMobile && {width: '100%'}}}>
                 <button className="btn btn-dark dropdown-toggle" style={{fontSize: '14px'}} data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">{header}</button>
                 <ul className="dropdown-menu" data-bs-theme='dark'>

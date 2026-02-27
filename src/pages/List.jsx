@@ -2,12 +2,16 @@ import Item from '../components/item/Item'
 import ListButton from '../components/list/ListButton'
 import ListDropdown from '../components/list/ListDropdown'
 import { useState, useContext } from 'react'
+import { useMobile } from '../hooks/mediaQuery'
 import { ListContext } from '../context/ListContext'
 
 export default function List(){
 
     // Imports some assets from ListContext
     const {list, deleteCheckedItems, sortItems, filterItems} = useContext(ListContext)
+
+    // Responsive media
+    const onMobile = useMobile()
 
     // Configures active property and order for sorting items
     const [activeSort, setActiveSort] = useState({
@@ -74,7 +78,7 @@ export default function List(){
     return (
         <main className='sub-content' style={{marginTop: '40px'}}>
             <div className='container' style={{marginBottom: '20px'}}>
-                <div className='row'>
+                <div className={`row ${onMobile ? 'row-cols-2' : 'row-cols-auto'}`}>
                     <ListDropdown 
                         header='Sort'
                         optionGroups={[
@@ -167,7 +171,7 @@ export default function List(){
                         buttonColor='btn-dark'
                         header='Clear All Options' // button text
                         func={() => clearAllOptions([setActiveSort, setActiveFilters])} 
-                        mobileMarginAdjust={true}
+                        mobileMarginAdjust={false}
                     />
                     <ListButton
                         buttonColor='btn-danger'
