@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
-export default function NavBar({pathname}){
+export default function NavBar(){
  
-    // useState to change navbar active item states by name
+    const {pathname} = useLocation() // will need to know pathname whenever this app starts or reloads
     const [activeNavPath, setActiveNavPath] = useState(pathname)
 
     /** 

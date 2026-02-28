@@ -1,6 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ListProvider } from './context/ListContext';
-import { useLocation } from 'react-router-dom';
 import About from "./pages/About";
 import List from './pages/List'
 import Home from './pages/Home';
@@ -10,11 +9,9 @@ import AddItem from './pages/AddItem';
 
 export default function App() {
 
-  const {pathname} = useLocation() // will need to fetch current pathname whenever web page gets reloaded
-
   return (
     <ListProvider>
-      <NavBar pathname={pathname}/>
+      <NavBar />
       <Routes> 
           <Route path='/' element={<Home />}/>
           <Route path='/about' element={<About />}/>
