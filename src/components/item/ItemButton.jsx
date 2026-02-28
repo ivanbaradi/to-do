@@ -5,8 +5,6 @@ export default function ItemButton({buttonColor, iconName, text, func}){
     const onMobile = useMobile()
 
     const button = {
-        display: 'inline-flex',
-        justifyContent: 'center',
         gap: '10px',
         width: '100%',
         borderRadius: 0
@@ -21,7 +19,7 @@ export default function ItemButton({buttonColor, iconName, text, func}){
 
     return (
         <div className="col-4 col-md-12" style={{...onMobile && {padding: '0 10px'}}}>
-            <button className={`btn ${buttonColor}`} style={{...button, ...middleButton}} onClick={func}>
+            <button className={`btn ${buttonColor} d-inline-flex justify-content-center`} style={{...button, ...middleButton}} onClick={func}>
                 <i className="material-symbols-outlined">{iconName}</i>
                 {!onMobile && <span style={textCSS}>{text}</span>}
             </button>

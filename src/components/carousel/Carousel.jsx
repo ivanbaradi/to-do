@@ -9,11 +9,10 @@ export default function Carousel(){
         backgroundColor: 'orangered',
         fontFamily: 'Lexend Deca, sans-serif',
         fontWeight: 500,
-        color: 'white'
     }
 
     return (
-        <div id="carousel" className="sub-content carousel slide" data-bs-ride='carousel' style={carousel}>
+        <div id="carousel" className="sub-content carousel slide text-white" data-bs-ride='carousel' style={carousel}>
             <div className="carousel-indicators">
                 {
                     carouselSlides.map((_, index) => 

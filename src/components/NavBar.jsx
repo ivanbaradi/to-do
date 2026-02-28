@@ -14,10 +14,6 @@ export default function NavBar({pathname}){
         setActiveNavPath(navPath)
     }
 
-    const navPath = {
-        textAlign: 'left'
-    }
-
     return (
         <nav className='navbar navbar-expand-md navbar-dark bg-dark'>
             <div className='container-fluid'>
@@ -29,9 +25,9 @@ export default function NavBar({pathname}){
                 
                 <div className="collapse navbar-collapse" id="navbarNavDropdown">
                     <div className="navbar-nav">
-                        <Link className={`${activeNavPath === '/add-item' && 'active'} nav-link`} style={navPath} onClick={() => changeActiveNavPath('/add-item')} to='/add-item'>Add Item</Link>
-                        <Link className={`${activeNavPath === '/list' && 'active'} nav-link`} style={navPath} onClick={() => changeActiveNavPath('/list')} to='/list'>List</Link>
-                        <Link className={`${activeNavPath === '/about' && 'active'} nav-link`} style={navPath} onClick={() => changeActiveNavPath('/about')} to='/about'>About</Link>
+                        <Link className={`${activeNavPath === '/add-item' && 'active'} nav-link text-start`} onClick={() => changeActiveNavPath('/add-item')} to='/add-item'>Add Item</Link>
+                        <Link className={`${activeNavPath === '/list' && 'active'} nav-link text-start`} onClick={() => changeActiveNavPath('/list')} to='/list'>List</Link>
+                        <Link className={`${activeNavPath === '/about' && 'active'} nav-link text-start`} onClick={() => changeActiveNavPath('/about')} to='/about'>About</Link>
                     </div>
                 </div>
             </div>
