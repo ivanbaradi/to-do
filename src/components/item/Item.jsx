@@ -54,14 +54,13 @@ export default function Item({id, title, desc, timestamp, checked, ...props}){
         textDecoration: checked && 'line-through 5px black'
     }
 
-    const marginAdjust = onMobile ? props.mobileMarginAdjust && {marginBottom: '40px'} : 
-    ((onTablet && props.tabletMarginAdjust) || (onLaptop && props.laptopMarginAdjust) || (onLargeLaptop && props.largeLaptopMarginAdjust)) && {marginBottom: '25px'}
+    const marginAdjust = ((onMobile && props.mobileMarginAdjust) || (onTablet && props.tabletMarginAdjust) || (onLaptop && props.laptopMarginAdjust) || (onLargeLaptop && props.largeLaptopMarginAdjust)) && {marginBottom: '25px'}
 
     return (
         
         <div className="col-xl-3 col-lg-4 col-md-6" style={{...marginAdjust}}>
             <div className="card">
-                <div className="card-body" style={{textAlign: 'left'}}>
+                <div className="card-body text-start">
                     
                     {onEdit ?
                         <input name="title" className="card-title" style={{width: '100%'}} value={newTitle} onChange={event => setInput(event, titleCharLimit, setNewTitle)}/> : 
