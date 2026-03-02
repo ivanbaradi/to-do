@@ -15,7 +15,7 @@ export default function ListDropdown({header, optionGroups, ...props}){
     }
 
     return (
-        <div className="col" style={{...onMobile && {marginBottom: props.mobileMarginAdjust && '10px'}}}>
+        <div className="col" style={{...onMobile && {marginBottom: props.mobileMarginAdjust && '25px'}}}>
             <div className='btn-group' style={{...onMobile && {width: '100%'}}}>
                 <button className="btn btn-dark dropdown-toggle" style={{fontSize: '14px'}} data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">{header}</button>
                 <ul className="dropdown-menu" data-bs-theme='dark'>

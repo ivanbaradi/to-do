@@ -64,10 +64,18 @@ export default function List(){
     }
 
     /**
-     * Clears all options (making them inactive)
+     * Clears all options from a specified option group
+     * @param {React.Dispatch<React.SetStateAction<object>>} setOptionGroup - setState associated with a specified option group
      */
-    function clearAllOptions(){
-        [setActiveSort, setActiveFilters].forEach(setOption => setOption(prev => Object.fromEntries(Object.keys(prev).map(key => [key, null]))))
+    function clearOptionGroup(setOptionGroup){
+        setOptionGroup(prev => Object.fromEntries(Object.keys(prev).map(key => [key, null])))
+    }
+
+    /**
+     * Clears all options from all option groups
+     */
+    function clearAllOptionGroups(){
+        [setActiveSort, setActiveFilters].forEach(setOptionGroup => clearOptionGroup(setOptionGroup))
     }
 
     // Displays error message due to zero items in the list
@@ -75,11 +83,11 @@ export default function List(){
         return <h2 style={{margin: '50px 0'}}>There are no items in the list.</h2>
 
     return (
-        <main className='sub-content' style={{marginTop: '40px'}}>
+        <main className='sub-content' style={{marginTop: '20px'}}>
             <div className='container' style={{marginBottom: '20px'}}>
                 <div className={`row ${onMobile ? 'row-cols-2' : 'row-cols-auto'}`}>
                     <ListDropdown 
-                        header='Sort'
+                        header='Sort' // button text
                         optionGroups={[
                             {
                                 subheader: 'Type', // OPTIONAL: option's subheader
@@ -168,15 +176,22 @@ export default function List(){
                     />
                     <ListButton
                         buttonColor='btn-dark' // button color in bootstrap
-                        header='Clear All Options' // button text
-                        func={clearAllOptions} 
-                        mobileMarginAdjust={false}
+                        header='Clear All Filters'
+                        func={() => clearOptionGroup(setActiveFilters)} 
+                        mobileMarginAdjust={true}
+                    />
+                    <ListButton
+                        buttonColor='btn-dark' 
+                        header='Clear All Options' 
+                        func={clearAllOptionGroups} 
+                        mobileMarginAdjust={true}
                     />
                     <ListButton
                         buttonColor='btn-danger'
                         header='Delete Checked Items'
                         func={deleteCheckedItems} 
                         mobileMarginAdjust={false}
+                        fullWidth={true} // takes 100% width (mobile only)
                     />
                 </div>
             </div>
