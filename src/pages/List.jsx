@@ -190,7 +190,6 @@ export default function List(){
                         buttonColor='btn-danger'
                         header='Delete Checked Items'
                         func={deleteCheckedItems} 
-                        mobileMarginAdjust={false}
                         fullWidth={true} // takes 100% width (mobile only)
                     />
                 </div>
