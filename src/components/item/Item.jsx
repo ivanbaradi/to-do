@@ -8,7 +8,7 @@ import { useMobile, useTablet, useLaptop, useLargeLaptop } from "../../hooks/med
 export default function Item({id, title, desc, timestamp, checked, ...props}){
 
     // List methods
-    const {saveItem, deleteItem, checkItem,} = useContext(ListContext)
+    const {saveItem, deleteItem, checkItem} = useContext(ListContext)
 
     // Character limits for inputs
     const {titleCharLimit, descCharLimit} = inputCharLimits
