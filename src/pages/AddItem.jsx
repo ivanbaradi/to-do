@@ -1,51 +1,46 @@
 import FormTextField from '../components/form/FormTextField'
 import FormButton from '../components/form/FormButton'
 import inputCharLimits from '../data/inputCharLimits.json'
-import { useState, useContext } from "react"
+import { useState, useContext, useEffect } from "react"
 import { ListContext } from '../context/ListContext'
-import { setInput, clearInput, finalizeInput } from '../utils/inputs'
+import { clearInputs, finalizeInputs, validateInputs } from '../utils/inputs'
 
 export default function AddItem(){
 
     const { addItem } = useContext(ListContext)
 
-    // title and description for new item
-    const [title, setTitle] = useState('')
-    const [desc, setDesc] = useState('')
+    const [title, setTitle] = useState({
+        text: '', // input's text (current input)
+        required: true, // flag whether an input is required or not
+        finalText: null // final input's text (null = text is to be determined)
+    })
 
-    // flag for item's empty title
-    const [emptyTitle, setEmptyTitle] = useState(null)
+    const [desc, setDesc] = useState({
+        text: '',
+        required: false,
+        finalText: null
+    })
 
-    // max input character limits
+    // Deconstructs texts from both titles and descriptions
+    const {text: titleText, finalText: titleFinalText, required: titleRequired} = title
+    const {text: descText, finalText: descFinalText, required: descRequired} = desc
+
+    // Max input character limits
     const {titleCharLimit, descCharLimit} = inputCharLimits
 
-    const input = {fontWeight: 300}
+    const inputs = [title, desc] // all inputs
+    const setInputs = [setTitle, setDesc] // all inputs' setStates
 
-    /**
-     * Adds new item to the To Do List
-     */
-    function submitForm(){
+    // Invoked to finalize inputs and add item to the list
+    useEffect(() => {
 
-        const finalTitle = finalizeInput(title)
-        const finalDesc = finalizeInput(desc)
-
-        if(finalTitle.length === 0){
-            setEmptyTitle(true)
+        if(!validateInputs(inputs))
             return
-        }
+        
+        addItem(titleFinalText, descFinalText)
+        clearInputs(setInputs)    
 
-        addItem(finalTitle, finalDesc)
-        clearForm()
-    }
-
-    /**
-     * Clears inputs
-     */
-    function clearForm(){
-        setEmptyTitle(null)
-        clearInput(setTitle)
-        clearInput(setDesc)
-    }
+    }, [titleFinalText, descFinalText])
 
     return (
         <form>
@@ -53,45 +48,32 @@ export default function AddItem(){
                 name='title'
                 charLimit={titleCharLimit}
                 label='Title'
-                input={title}
-                inputElement={<input 
-                    style={input} 
-                    name="title" 
-                    type="text" 
-                    className="form-control" 
-                    id='title' 
-                    value={title} 
-                    onChange={event => setInput(event, titleCharLimit, setTitle)}
-                    placeholder='Enter title'
-                />}
-                emptyInput={emptyTitle} // indicates required field 
+                input={titleText}
+                type='input'
+                setText={setTitle}
+                finalInput={titleFinalText}
+                required={titleRequired}
             />
             <FormTextField 
                 name='desc'
                 charLimit={descCharLimit}
                 label='Description'
-                input={desc}
-                inputElement={<textarea 
-                    style={input} 
-                    name="desc" 
-                    className="form-control" 
-                    id="desc" 
-                    value={desc} 
-                    rows="5" 
-                    onChange={event => setInput(event, descCharLimit, setDesc)}
-                    placeholder="Enter description (optional)" 
-                />}
+                input={descText}
+                type='textbox'
+                setText={setDesc}
+                finalInput={descFinalText}
+                required={descRequired}
             />
             <div className="container">
                 <div className="row">
                     <FormButton 
                         text='Clear'
-                        onClickEvent={clearForm}
+                        onClickEvent={() => clearInputs(setInputs)}
                         mobileMarginAdjust={true}
                     />
                     <FormButton 
                         text='Add'
-                        onClickEvent={submitForm}
+                        onClickEvent={() => finalizeInputs(setInputs)}
                         mobileMarginAdjust={false}
                     />
                 </div>
