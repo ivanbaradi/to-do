@@ -3,6 +3,7 @@ import ListButton from '../components/list/ListButton'
 import ListDropdown from '../components/list/ListDropdown'
 import { useState, useContext } from 'react'
 import { useMobile } from '../hooks/mediaQuery'
+import { clearOptionGroup, clearOptionGroups, changeActiveOption } from '../utils/dropdownOptions'
 import { ListContext } from '../context/ListContext'
 
 export default function List(){
@@ -34,49 +35,8 @@ export default function List(){
     const listUI = sortItems(filterItems(list, activeFilters), activePropSort, descending)
     const n = listUI.length
 
-    /**
-     * Configures an option to become active
-     * @param {string} option - option to make it active (key)
-     * @param {string | boolean} newValue - option's new value to make it active (value)
-     * @param {React.Dispatch<React.SetStateAction<object>>} setActiveOption - option's setState 
-     */
-    function changeActiveOption(option, newValue, setActiveOption){
-        
-        setActiveOption(prev => {
-
-            const prevValue = prev[option] // previous value of a specific option
-            const updatedOptions = {...prev, [option]: newValue === prevValue ? null : newValue} // configuring option with new value
-
-            // Special case for sorting options
-            if(prev === activeSort){
-
-                // CASE 1: None of the sorting options are active => ascending order will be active by default
-                if(prev.descending === null)
-                    return {...updatedOptions, descending: false}
-
-                // CASE 2: Active sorting option is clicked => all sorting options will be inactive
-                if(prevValue === newValue)
-                    return Object.fromEntries(Object.keys(prev).map(key => [key, null]))
-            }
-            
-            return updatedOptions
-        })
-    }
-
-    /**
-     * Clears all options from a specified option group
-     * @param {React.Dispatch<React.SetStateAction<object>>} setOptionGroup - setState associated with a specified option group
-     */
-    function clearOptionGroup(setOptionGroup){
-        setOptionGroup(prev => Object.fromEntries(Object.keys(prev).map(key => [key, null])))
-    }
-
-    /**
-     * Clears all options from all option groups
-     */
-    function clearAllOptionGroups(){
-        [setActiveSort, setActiveFilters].forEach(setOptionGroup => clearOptionGroup(setOptionGroup))
-    }
+    // List of all option groups' setStates
+    const setOptionGroups = [setActiveSort, setActiveFilters]
 
     // Displays error message due to zero items in the list
     if(list.length === 0)
@@ -183,7 +143,7 @@ export default function List(){
                     <ListButton
                         buttonColor='btn-dark' 
                         header='Clear All Options' 
-                        func={clearAllOptionGroups} 
+                        func={() => clearOptionGroups(setOptionGroups)} 
                         mobileMarginAdjust={true}
                     />
                     <ListButton
