@@ -35,9 +35,6 @@ export default function List(){
     const listUI = sortItems(filterItems(list, activeFilters), activePropSort, descending)
     const n = listUI.length
 
-    // List of all option groups' setStates
-    const setOptionGroups = [setActiveSort, setActiveFilters]
-
     // Displays error message due to zero items in the list
     if(list.length === 0)
         return <h2 style={{margin: '50px 0'}}>There are no items in the list.</h2>
@@ -143,7 +140,7 @@ export default function List(){
                     <ListButton
                         buttonColor='btn-dark' 
                         header='Clear All Options' 
-                        func={() => clearOptionGroups(setOptionGroups)} 
+                        func={() => clearOptionGroups([setActiveSort, setActiveFilters])} 
                         mobileMarginAdjust={true}
                     />
                     <ListButton
