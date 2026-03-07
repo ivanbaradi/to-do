@@ -24,3 +24,13 @@ export function getTimestamp(time){
 
     return new Date(time).toLocaleString(locale, options)
 }
+
+/**
+ * Gets the copyright range in years
+ * @returns {string | number} Copyright years
+ */
+export function getCopyRightYears(){
+    const currYear = new Date().getFullYear()
+    const startYear = 2025
+    return (currYear - startYear > 0) ? `${startYear} - ${currYear}` : startYear
+}
