@@ -2,12 +2,14 @@ import FormTextField from '../components/form/FormTextField'
 import FormButton from '../components/form/FormButton'
 import inputCharLimits from '../data/inputCharLimits.json'
 import { useState, useContext, useEffect } from "react"
+import { useMobile } from '../hooks/mediaQuery'
 import { ListContext } from '../context/ListContext'
 import { clearInputs, finalizeInputs, validateInputs } from '../utils/inputs'
 
 export default function AddItem(){
 
     const { addItem } = useContext(ListContext)
+    const onMobile = useMobile()
 
     const [title, setTitle] = useState({
         text: '', // input's text (current input)
@@ -43,7 +45,7 @@ export default function AddItem(){
     }, [titleFinalText, descFinalText])
 
     return (
-        <form>
+        <form style={{...onMobile && {width: '75%'}}}>
             <FormTextField 
                 name='title'
                 charLimit={titleCharLimit}
