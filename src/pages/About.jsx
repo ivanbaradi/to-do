@@ -1,4 +1,8 @@
+import { useTablet } from '../hooks/mediaQuery'
+
 export default function About(){
+
+    const onTablet = useTablet()
 
     const content = {
         width: '70%',
@@ -7,7 +11,8 @@ export default function About(){
     }
 
     const title = {
-        marginBottom: '20px'
+        marginBottom: '20px',
+        textAlign: onTablet && 'center'
     }
 
     return (
