@@ -8,19 +8,16 @@ import Footer from './components/Footer';
 import AddItem from './pages/AddItem';
 
 export default function App() {
-
   return (
-    <div className='app d-grid'>
-      <ListProvider>
-          <NavBar />
-          <Routes> 
-              <Route path='/' element={<Home />}/>
-              <Route path='/about' element={<About />}/>
-              <Route path='/add-item' element={<AddItem />}/>
-              <Route path='/list' element={<List />}/>
-          </Routes>
-          <Footer />
-      </ListProvider>
-    </div>
+    <ListProvider>
+        <NavBar />
+        <Routes> 
+            <Route path='/' element={<Home />}/>
+            <Route path='/about' element={<About />}/>
+            <Route path='/add-item' element={<AddItem />}/>
+            <Route path='/list' element={<List />}/>
+        </Routes>
+        <Footer />
+    </ListProvider>
   )
 }
