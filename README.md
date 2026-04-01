@@ -30,8 +30,8 @@
 
 If you have Visual Studio Code:
 
-1. Under **File**, click **Open** to open this project.
-2. Under **Terminal**, click **New Terminal** to open a new terminal.
+1. Go to **File > Open** to open this project.
+2. Go to **Terminal > New Terminal** to open a new terminal.
 3. Execute the same command line from above to run the application.
 
-Keep in mind that when you open a new terminal in VS Code, it directs you to this project's directory. In other words, you don't need to execute multiple command lines to get to this project's directory.
+Keep in mind that when you open a new terminal in VS Code, it directs you to this project's directory. In other words, you don't need to execute multiple command lines to get there.
