@@ -16,14 +16,17 @@ form {
     margin: 30px auto;
 }
 
+.app{
+    min-height: 100dvh;
+    grid-template-rows: auto 1fr auto;
+}
+
 .title{
     font-weight: 600;
     font-size: 32px;
-    width: 80%;
-    margin: 0 auto;
 }
 
-.sub-content, .title, form {
+.content, .sub-content, .title, form {
     margin-bottom: 40px;
 }
 
