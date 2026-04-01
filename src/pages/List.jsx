@@ -40,7 +40,7 @@ export default function List(){
         return <h2 style={{margin: '50px 0'}}>There are no items in the list.</h2>
 
     return (
-        <main className='sub-content' style={{marginTop: '20px'}}>
+        <main style={{marginTop: '20px'}} className='content'>
             <div className='container' style={{marginBottom: '20px'}}>
                 <div className={`row ${onMobile ? 'row-cols-2' : 'row-cols-auto'}`}>
                     <ListDropdown 

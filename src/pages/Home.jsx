@@ -5,7 +5,7 @@ import Review from "../components/review/Review"
 export default function Home(){
 
     return (
-        <main>
+        <main className="content">
             <Carousel />
             <Feature />            
             <Review />
