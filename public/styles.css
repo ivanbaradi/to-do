@@ -16,12 +16,12 @@ form {
     margin: 30px auto;
 }
 
-.app{
+#root {
     min-height: 100dvh;
     grid-template-rows: auto 1fr auto;
 }
 
-.title{
+.title {
     font-weight: 600;
     font-size: 32px;
 }
